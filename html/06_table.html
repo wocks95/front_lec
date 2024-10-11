@@ -33,6 +33,46 @@
           </tr>
         </tbody>
       </table>
-    -->    
+    -->
+
+  <table border="1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>e</td>
+      </tr>
+      <tr>
+        <td>f</td>
+      </tr>
+    </tbody>
+  </table>
+  <!--
+    셀 병합하기
+    1. td 태그에 병합 속성을 추가해서 처리한다.
+    2. 병합 속성
+      1) colspan : 좌우 셀을 병합한다.
+      2) rowspan : 상하 셀을 병합한다.
+  -->
+  <table border="1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td colspan="2">e</td>
+      </tr>
+      <tr>
+        <td colspan="3">f</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
