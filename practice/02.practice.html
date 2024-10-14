@@ -15,63 +15,90 @@
   </form>
 </div> 
     <br>
-     <!--<th></th>가운데 정렬 및 글자 굵게 <td></td> 태그 대신 사용, 테이블의 자식 태그
+     <!--<th></th>가운데 정렬 및 글자 굵게 <td></td> 태그 대신 사용, 주로 <thead></thead>에 사용함
       <caption></caption> 해당 테이블의 제목을 만듬, 테이블의 자식 태그
   -->
   <h1>연습2</h1>
-<form method="post">
-   <table>
-    <tbody>
+<div>  
+  <form method="post">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <input type="text" placeholder="아이디"></td>
+          <td rowspan="2"><button type="submit">로그인</button></td> 
+      </tr>
       <tr>
-        <td></td>
-        <input type="text" placeholder="아이디">
-        <br/>
-        <input type="password" placeholder="비밀번호">
-        <button type="submit">로그인</button>
-        <br/>
-     </tr>
-    </tbody>
-  </table>
-</form>
+        <td>
+          <input type="password" placeholder="비밀번호">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
 <!--table 태그를 사용하자--> 
   <h1>연습3</h1>
-    <form method="post">
-      <table>
-        <caption>개인 정보 작성</caption>
-        <label for="name">이름</label>
-        <input type="text" name="name" id="name"><br/>
-        <label for="mail">메시지</label>
-        <input type="text" name="mail" id="mail"><br/>
-
-
-          연락처<input type="number"><br>
-          블로그/홈페이지<input type="email"><br>
-          <button trpe="submit">제출하기</button>
-          <button type="reset">다시작성</button>
-      </table>
-    </form>
+<div>
+  <form method="post">
+    <table>
+      <caption><strong>개인 정보 작성</strong></caption>
+      <tbody>
+        <tr>
+          <td><label for="name">이름</label></td>
+          <td><input type="text" name="name" id="name"></td>
+        </tr>
+        <tr>
+          <td><label for="mail">메일 주소</label></td>
+          <td><input type="email" name="mail " id="mail"></td>
+        </tr>
+        <tr>
+          <td><label for="contact">연락처</label></td>
+          <td><input type="text" name="contact" id="contact"></td>
+        </tr>
+        <tr>
+          <td><label for="blog">블로그/홈페이지</label></td>
+          <td><input type="url" name="blog" id="blog"></td>
+        </tr>
+        <tr>
+          <th colspan="2"> 
+            <button type="submit">제출하기</button>
+            <button type="reset">다시작성</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
 
   <h1>연습4</h1>
-    <form method="post">
+<div>  
+  <!-- 파일 첨부가 포함된 form은 method + enctype 필수 작성 -->
+  <form method="post" enctype="multipart/form-data">
+    <div>
       <label for="id">아이디</label>
       <input type="text" name="text" id="id" placeholder="아이디">
-      <button type="button">중복확인</button>
-      <br/>
-      <label for="password">비밀번호</label>
-      <input type="password" name="password" id="password" placeholder="새 비밀번호">
-      <br/>
-      <label for="password">비밀번호 확인</label>
-      <input type="password" name="password" id="password" placeholder="비밀번호 확인">
-      <br/>
+      <button type="button" onclick="alert(중복확인되었습니다)">중복확인</button>
+    </div>
+    <div>
+      <label for="pw">비밀번호</label>
+      <input type="password" name="pw" id="pw" placeholder="새 비밀번호">
+    </div>
+    <div>
+      <label for="pw2">비밀번호 확인</label>
+      <input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인">
+    </div>
+    <div>  
       <label for="email">이메일</label>
-      <input type="email" name="email" id="email">
+      <input type="text" id="email" name="email" placeholder="이메일">
       <span>@</span>
-      <input type="text" list="domains">
-      <datalist id="domains">
+      <input type="text" list="domain" name="email" placeholder="직접 입력 가능">
+      <datalist id="domain">
         <option>gmail.com</option>
         <option>naver.com</option>
         <option>daum.net</option>
       </datalist>
+    </div>  
     <div>  
       <fieldset>
         <legend>성별</legend>
@@ -88,11 +115,12 @@
           <input type="checkbox" name="interests" value="1" id="IT">
           <label for="manage">경영</label>
           <input type="checkbox" name="interests" value="4" id="manage">
+          <label for=""
       </fieldset>
     </div> 
     </form>
 
 
-
+</div>
 </body>
 </html>
