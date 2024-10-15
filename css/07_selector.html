@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selector</title>
+</head>
+<body>
+  
+  <!-- id 선택자 -->
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+    #box {
+      font-family: "Noto Sans JP", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+  <div id="box">box</div>
+
+  <hr>
+
+  <!-- 클래스 선택자 -->
+  <style>
+    .title {
+      font-size: 32px; /* 2em */
+    }
+    .bold {
+      font-weight: 700;
+    }
+  </style>
+  <div class="title">hello world</div>
+  <div class="title bold">hello world</div>
+
+  <hr>
+
+  <!-- 태그 선택자 -->
+  <style>
+    pre {
+      font-size: 16px; /* 1em */
+    }
+  </style>
+  <pre>^   ^</pre>
+
+  <hr>
+
+  <!-- 자식 선택자 : 부모 > 자식-->
+  <!-- 후손 선택자 : 부모  후손 -->
+  <style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+    #sites > li {
+      color : #42f548;
+    }
+    #sites > li > a {
+      color : #000000;
+    }
+    #sites a {
+      font-size: 32px;
+    }
+  </style>
+  <!--<a>태그나 <i> 태그가 <li> 태그의 후손이다. -->
+  <ul id="sites">
+    <li>
+      <a href="https://www.instagram.com/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </li>
+    <li>
+      <a href="http://www.facebook.com/" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a href="http://www.github.com/" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </li>
+  </ul>
+  <ol id="wakeup">
+    <li>
+      <input type="radio" name="rdo-wakeup" id="five" checked>
+      <label for="five">5시</label>
+    </li>
+    <li>
+      <input type="radio" name="rdo-wakeup" id="six">
+      <label for="six">6시</label>
+    </li>
+    <li>
+      <input type="radio" name="rdo-wakeup" id="seven">
+      <label for="seven">7시</label>
+    </li>
+    <li>
+      <input type="radio" name="rdo-wakeup" id="eight">
+      <label for="eight">8시</label>
+    </li>
+  </ol>
+
+</body>
+</html>
