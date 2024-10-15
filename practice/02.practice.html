@@ -108,58 +108,60 @@
           <input type="radio" name="gender" value="woman" id="woman">
       </fieldset>
     </div>
-    <div>   
-      <fieldset>
-        <legend>관심</legend>
+      <div>   
+        <fieldset>
+          <legend>관심</legend>
+          <div>
+            <label for="IT">IT</label>
+            <input type="checkbox" name="interests" value="1" id="IT">
+            <label for="manage">경영</label>
+            <input type="checkbox" name="interests" value="2" id="manage">
+          </div>
+          <div>  
+            <label for="finance">금융</label>
+            <input type="checkbox" name="interests" value="4" id="finance">
+            <label for="manufacture">제조</label>
+            <input type="checkbox" name="interests" value="8" id="manufacture">
+          </div>
+          <div>
+            <label for="service">서비스</label>
+            <input type="checkbox" name="interests" value="16" id="service">
+            <label for="etc">기타</label>
+            <input type="checkbox" name="interests" value="32" id="etc">
+          </div>  
+        </fieldset>
+      </div>
+      <div>
         <div>
-          <label for="IT">IT</label>
-          <input type="checkbox" name="interests" value="1" id="IT">
-          <label for="manage">경영</label>
-          <input type="checkbox" name="interests" value="2" id="manage">
-        </div>
-        <div>  
-          <label for="finance">금융</label>
-          <input type="checkbox" name="interests" value="4" id="finance">
-          <label for="manufacture">제조</label>
-          <input type="checkbox" name="interests" value="8" id="manufacture">
+        <label for="address">거주지</label>
+        <select name="address" id="address">
+          <option value="">::선택하세요::</option>
+          <option value="2">서울</option>
+          <option value="4">대전</option>
+          <option value="6">대구</option>
+          <option value="8">부산</option>
+          <option value="10">인천</option>
+        </select>
+        <input type="text" id="address">
         </div>
         <div>
-          <label for="service">서비스</label>
-          <input type="checkbox" name="interests" value="16" id="service">
-          <label for="etc">기타</label>
-          <input type="checkbox" name="interests" value="32" id="etc">
-        </div>  
-      </fieldset>
-    </div>
-    <div>
-      <label for="address">거주지</label>
-      <select name="address" id="address">
-        <option value="">::선택하세요::</option>
-        <option value="2">서울</option>
-        <option value="4">대전</option>
-        <option value="6">대구</option>
-        <option value="8">부산</option>
-        <option value="10">인천</option>
-      </select>
-      <input type="text" id="address">
-    </div>
-    </form>
-    <div>
-      <div><label for="attach">자기 소개 작성</label></div>
-      <textarea rows="5" cols="30" name="introduce" id="attach" placeholder="200자 이내 간단히 작성"></textarea>
-    </div>
-    <div>
-      <label for="attach">이력서</label>
-      <input type="file" name="attach" id="attach">
-    </div>
-    <div>
-      <label for="submit_dt">제출일</label>
-      <input type="date" name="submit_dt" id="submit_dt">
-    </div>
-    <div>
-      <button type="submit">제출</button>
-      <button type="reset">다시입력</button>
-    </div>
+          <div><label for="attach">자기 소개 작성</label></div>
+          <textarea rows="5" cols="30" name="introduce" id="attach" placeholder="200자 이내 간단히 작성"></textarea>
+        </div>
+        <div>
+          <label for="attach">이력서</label>
+          <input type="file" name="attach" id="attach">
+        </div>
+        <div>
+          <label for="submit_dt">제출일</label>
+          <input type="date" name="submit_dt" id="submit_dt">
+        </div>
+        <div>
+          <button type="submit">제출</button>
+          <button type="reset">다시입력</button>
+        </div>
+      </div>
+  </form>  
 </div>
 </body>
 </html>
