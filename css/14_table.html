@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+</head>
+<body>
+  <style>
+    .table1 {
+      border: 3px solid gray;
+      border-collapse: collapse; /* separate : 디폴트, 각 영역의 테두리를 구분한다. */
+                                 /* collapse : 각 영역의 테두리를 구분하지 않고 합친다. */
+    }
+    .table1 > thead th {
+      border: 1px solid crimson;
+    }
+    .table1 > thead th:nth-of-type(1) {width: 200px;}
+    .table1 > thead th:nth-of-type(2) {width: 300px;}
+    .table1 > thead th:nth-of-type(3) {width: 400px;}
+    /*.tabel1 > thead th:nth-of-type(n) {width: 200px;} n: 모든 열에 적용이 가능함*/
+    .table1 > tbody td {
+      border: 1px solid crimson;
+      height: 50px;
+      text-align: center;  /* 가로(x) 방향 정렬 */
+      vertical-align: middle; /* 세로(y) 방향 정렬 */
+    }
+    .table1 > tfoot td {
+      border: 1px solid crimson;
+      text-align: center;
+    }
+    .table1 > tbody > tr:hover {
+      background-color: antiquewhite;
+      cursor: pointer;
+    }
+    .table1 > tbody > tr:active {
+      background-color: bisque;
+    }
+  </style>
+  <table class="table1">
+    <thead>
+      <tr>
+        <th>회원번호</th>
+        <th>회원명</th>
+        <th>포인트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1000</td>
+        <td>jessica</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>james</td>
+        <td>200</td>
+      </tr>
+      <tr>
+        <td>1002</td>
+        <td>tom</td>
+        <td>300</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">포인트합계</td>
+        <td>600</td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+</body>
+</html>

@@ -57,5 +57,24 @@
     }
   </style>
   <div id="box3"></div>
+
+  <hr>
+
+  <!-- background-position 을 이용한 이미지 일부 노출 -->
+  <style>
+    #box4 {
+      box-sizing: border-box;
+      width: 150px;
+      height: 100px;
+      border: 1px solid green;
+      background-image: url('../assets/images/logo.png');
+      background-position: -300px -200px;/* 움직이는 건 배경 이미지이다. */
+                                         /* x방향 왼쪽으로 300px 배경 이동*/
+                                         /* y방향 위쪽으로 200px 배경 이동*/
+      /*box는 고정이고 배경 이미지가 움직이면서 조정됨 left : -값, right : +값, top : -값, bottom : +값*/
+    }
+  </style>
+  <div id="box4"></div>
+  
 </body>
 </html>
