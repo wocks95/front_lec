@@ -72,15 +72,19 @@
   <hr/>
 
   <style>
-    .table2 {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-    .table2 > thead td {
-      border: 1px solid black;
+    .title {
+      font-size: 900;
       text-align: center;
     }
-
+    .title > .month {
+      font-size: 48px;
+      color: blue;
+    }
+    .table2 {
+      border-collapse: collapse;
+      margin: 10px auto;
+    }
+    
     .table2 > tbody td {
       box-sizing: border-box;
       width: 100px;
@@ -98,7 +102,9 @@
       color: gray;
     }
   </style>
-    <caption><strong>202410February</strong></caption>
+  <div class="title">
+    2024<span class="month">10</span>February
+  </div>
     <table class="table2">
       <thead>
         <tr>
@@ -108,7 +114,7 @@
           <td>WED</td>
           <td>THU</td>
           <td>FRI</td>
-          <td>SAT</td>
+          <td class="color1">SAT</td>
         </tr>
       </thead>
       <tbody>
