@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>practice</title>
+</head>
+<body>
+  
+
+  <style>
+    .header {
+      width: 100%;
+      height: 200px;
+      border-bottom: 1px solid green;
+      border-radius: 15px;
+      position: fixed;
+      top: 0;
+      background-color: white;
+    }
+    .container {
+      width: 70%;
+      height: 600px;
+      overflow: hidden;
+      margin: 200px auto 0;
+     
+    }
+    .main, .aside {
+      border-left: 1px solid gray;
+      border-right: 1px solid gray;
+    }
+    .main {
+      width: 70%;
+      height: 600px;
+      float: left;
+      
+    }
+    .main-aside {
+      width: 50%;
+      height: 100px;
+      border: 1px solid limegreen;
+    }
+    .news{
+      list-style-type: none;
+      padding: 0;
+      overflow: hidden;
+    }
+    .news > li {
+      float: left;
+      padding: 10px;
+      border: 1px solid yellow;
+      text-align: center;
+    }
+    .aside {
+      width: 28%;
+      height: 600px;
+      float: right;
+    }
+    .footer {
+      width: 100%;
+      height: 200px;
+      border-top: 1px solid blue;
+      border-radius: 15px;
+    }
+
+  </style>
+  <div class="header"></div>
+  <div class="container">
+    <div class="main">
+      <div class="main-aside">
+        <ul class="news">
+          <li><a href="http://naver.com/">정치</a></li>
+          <li>경제</li>
+          <li>문학</li>
+          <li>군사</li>
+        </ul>
+      </div>
+    </div>
+    <div class="aside"></div>
+  </div>
+  <div class="footer"></div>
+
+
+
+</body>
+</html>

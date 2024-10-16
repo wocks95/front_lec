@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table</title>
+</head>
+<body>
+  <style>
+    .table1 {
+      border: 3px solid gray;
+      border-collapse: collapse; /* separate : 디폴트, 각 영역의 테두리를 구분한다. */
+                                 /* collapse : 각 영역의 테두리를 구분하지 않고 합친다. */
+    }
+    .table1 > thead th {
+      border: 1px solid crimson;
+    }
+    .table1 > thead th:nth-of-type(1) {width: 200px;}
+    .table1 > thead th:nth-of-type(2) {width: 300px;}
+    .table1 > thead th:nth-of-type(3) {width: 400px;}
+    /*.tabel1 > thead th:nth-of-type(n) {width: 200px;} n: 모든 열에 적용이 가능함*/
+    .table1 > tbody td {
+      border: 1px solid crimson;
+      height: 50px;
+      text-align: center;  /* 가로(x) 방향 정렬 */
+      vertical-align: middle; /* 세로(y) 방향 정렬 */
+    }
+    .table1 > tfoot td {
+      border: 1px solid crimson;
+      text-align: center;
+    }
+    .table1 > tbody > tr:hover {
+      background-color: antiquewhite;
+      cursor: pointer;
+    }
+    .table1 > tbody > tr:active {
+      background-color: bisque;
+    }
+  </style>
+  <table class="table1">
+    <thead>
+      <tr>
+        <th>회원번호</th>
+        <th>회원명</th>
+        <th>포인트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1000</td>
+        <td>jessica</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>1001</td>
+        <td>james</td>
+        <td>200</td>
+      </tr>
+      <tr>
+        <td>1002</td>
+        <td>tom</td>
+        <td>300</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">포인트합계</td>
+        <td>600</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr/>
+
+  <style>
+    .title {
+      font-size: 900;
+      text-align: center;
+    }
+    .title > .month {
+      font-size: 48px;
+      color: blue;
+    }
+    .table2 {
+      border-collapse: collapse;
+      margin: 10px auto;
+    }
+    
+    .table2 > tbody td {
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      border: 1px solid #000;
+      padding-bottom: 60px;
+    }
+    .color1 {
+      color: blue;
+    }
+    .color2 {
+      color: red;
+    }
+    .color3 {
+      color: gray;
+    }
+  </style>
+  <div class="title">
+    2024<span class="month">10</span>February
+  </div>
+    <table class="table2">
+      <thead>
+        <tr>
+          <td class="color2">SUN</td>
+          <td>MON</td>
+          <td>TUE</td>
+          <td>WED</td>
+          <td>THU</td>
+          <td>FRI</td>
+          <td class="color1">SAT</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="color3">29</td>
+          <td class="color3">30</td>
+          <td class="color2">1</td>
+          <td>2</td>
+          <td class="color2">3</td>
+          <td>4</td>
+          <td class="color1">5</td>
+        </tr>
+        <tr>
+          <td class="color2">6</td>
+          <td>7</td>
+          <td>8</td>
+          <td class="color2">9</td>
+          <td>10</td>
+          <td class="color2">11</td>
+          <td class="color1">12</td>
+        </tr>
+        <tr>
+          <td class="color2">13</td>
+          <td>14</td>
+          <td>15</td>
+          <td>16</td>
+          <td>17</td>
+          <td>18</td>
+          <td class="color1">19</td>
+        </tr>
+        <tr>
+          <td class="color2">20</td>
+          <td>21</td>
+          <td>22</td>
+          <td>23</td>
+          <td>24</td>
+          <td>25</td>
+          <td class="color1">26</td>
+        </tr>
+        <tr>
+          <td class="color2">27</td>
+          <td>28</td>
+          <td>29</td>
+          <td>30</td>
+          <td>31</td>
+          <td class="color3">1</td>
+          <td class="color3">2</td>
+        </tr>
+      </tbody>
+    </table>
+
+</body>
+</html>

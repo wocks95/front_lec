@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overflow</title>
+</head>
+<body>
+  <style>
+    div {
+      border: 1px solid green;
+      width: 300px;
+      height:100px;
+    }
+    #box1 {
+      overflow: hidden;
+    }
+    #box2 {
+      overflow: scroll;
+    }
+    #box3 {
+      overflow: auto;
+    }
+    #box4 {
+      overflow: visible;
+    }
+  </style>
+  <!-- overflow: hidden; (숨김)-->
+  <div id="box1">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in condimentum nulla, vitae euismod massa. Cras tellus lacus, dignissim eu leo a, sollicitudin consectetur ante. Nullam fermentum nulla ac metus auctor hendrerit. In hac habitasse platea dictumst. Sed ornare orci odio, eu hendrerit nunc lacinia quis. Curabitur justo felis, cursus et libero nec, pellentesque ultricies enim. Donec a eros nunc. Cras quis vestibulum nunc. Vestibulum ac pulvinar ipsum. Nunc ut felis elit. In dapibus odio eget ligula malesuada venenatis. Aliquam euismod at felis sed ornare. Quisque ultricies quam odio, sit amet ullamcorper felis ultricies maximus. Vivamus malesuada arcu a mi elementum, pharetra efficitur neque dignissim.
+  </div>
+
+  <!-- overflow: scroll; (스크롤)-->
+  <div id="box2">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in condimentum nulla, vitae euismod massa. Cras tellus lacus, dignissim eu leo a, sollicitudin consectetur ante. Nullam fermentum nulla ac metus auctor hendrerit. In hac habitasse platea dictumst. Sed ornare orci odio, eu hendrerit nunc lacinia quis. Curabitur justo felis, cursus et libero nec, pellentesque ultricies enim. Donec a eros nunc. Cras quis vestibulum nunc. Vestibulum ac pulvinar ipsum. Nunc ut felis elit. In dapibus odio eget ligula malesuada venenatis. Aliquam euismod at felis sed ornare. Quisque ultricies quam odio, sit amet ullamcorper felis ultricies maximus. Vivamus malesuada arcu a mi elementum, pharetra efficitur neque dignissim.
+  </div>
+  
+  <!-- overflow: auto; (자동)-->
+  <div id="box3">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in condimentum nulla, vitae euismod massa. Cras tellus lacus, dignissim eu leo a, sollicitudin consectetur ante. Nullam fermentum nulla ac metus auctor hendrerit. In hac habitasse platea dictumst. Sed ornare orci odio, eu hendrerit nunc lacinia quis. Curabitur justo felis, cursus et libero nec, pellentesque ultricies enim. Donec a eros nunc. Cras quis vestibulum nunc. Vestibulum ac pulvinar ipsum. Nunc ut felis elit. In dapibus odio eget ligula malesuada venenatis. Aliquam euismod at felis sed ornare. Quisque ultricies quam odio, sit amet ullamcorper felis ultricies maximus. Vivamus malesuada arcu a mi elementum, pharetra efficitur neque dignissim.
+  </div>
+  
+  <!-- overflow: visible; (디폴트)-->
+  <div id="box4">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in condimentum nulla, vitae euismod massa. Cras tellus lacus, dignissim eu leo a, sollicitudin consectetur ante. Nullam fermentum nulla ac metus auctor hendrerit. In hac habitasse platea dictumst. Sed ornare orci odio, eu hendrerit nunc lacinia quis. Curabitur justo felis, cursus et libero nec, pellentesque ultricies enim. Donec a eros nunc. Cras quis vestibulum nunc. Vestibulum ac pulvinar ipsum. Nunc ut felis elit. In dapibus odio eget ligula malesuada venenatis. Aliquam euismod at felis sed ornare. Quisque ultricies quam odio, sit amet ullamcorper felis ultricies maximus. Vivamus malesuada arcu a mi elementum, pharetra efficitur neque dignissim.
+  </div>
+  
+  
+  <style>
+    /*
+      overflow: hidden;
+      ┌──────────────────────────┐
+      |  float: left;            |
+      |  ┌────────┐  ┌────────┐  |
+      |  |        |  |        |  |
+      |  └────────┘  └────────┘  |
+      └──────────────────────────┘
+    */
+    .gnb {
+      margin-top: 300px;
+      list-style-type: none;
+      padding: 0;
+      overflow: hidden;
+    }
+    .gnb > li {
+      float: left;
+      padding: 10px;
+      border: 1px solid gray;
+      text-align: center;
+    }
+
+  </style>
+  <ul class="gnb">
+    <li><a href=""></a>정치</li>
+    <li>경제</li>
+    <li>생활/문화</li>
+    <li>IT/과학</li>
+  </ul>
+  <div class="content">content</div>
+</body>
+</html>
