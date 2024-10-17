@@ -4,19 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>layout</title>
+
 </head>
 <body>
   
   <!-- CSS 초기 설정 -->
   <style>
-    div, p, body, pre, ul, ol, dl, li, dt, dd {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    } 
-    ul, ol {
-      list-style-type: none;
-    }
+    @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
     a {
       text-decoration: none;
     }
@@ -32,6 +26,35 @@
       position: fixed;
       top: 0;
       background-color: white;
+    }
+    .title {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .sign {
+      width: 95%;
+      text-align: right;
+    }
+    .gnb-wrap {
+      width: 400px;
+      margin: 50px auto 0;
+
+    }
+    .gnb {
+      width: 100%;
+      overflow: hidden;
+    }
+    .gnb > li {
+      float: left;
+      width: 80px;
+    }
+    .gnb > li > a {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .gnb > li > a:hover {
+      color: red;
     }
     .container {
       width: 70%;
@@ -58,9 +81,34 @@
       height: 200px;
       border-top: 1px solid blue;
     }
-
+  
   </style>
-  <div class="header"></div>
+  <!-- semantic tag (의미를 가진 semantic tag) 즉 쉽게 말해 의미를 가진 <div></div>
+  <header>
+    <nav></nav>
+  </header>
+  <main>
+    <section></section>
+    <article></article>
+    <aside></aside>
+  </main>
+  -->
+  <div class="header">
+    <h1 class="title">homepage</h1>
+    <div class="sign">
+      <a href="/login">로그인</a>
+      <a href="/join">회원가입</a>
+    </div>
+    <div class="gnb-wrap">
+      <ul class="gnb">
+        <li><a href="/menu1">메뉴1</a></li>
+        <li><a href="/menu2">메뉴2</a></li>
+        <li><a href="/menu3">메뉴3</a></li>
+        <li><a href="/menu4">메뉴4</a></li>
+        <li><a href="/menu5">메뉴5</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="container">
     <div class="main"></div>
     <div class="aside"></div>

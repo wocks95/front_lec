@@ -7,5 +7,95 @@
 </head>
 <body>
   
+
+  <!--
+    display: flex;
+    1.부모에 display: flex; 설정하면 자식들이 flexable 한 box 가 된다.
+    2. 기본 용어
+      1) 부모 : flex container
+      2) 자식 : flex item
+    3. 축
+      1) 메인 축 : main axis (x 축)
+      2) 보조 축 : cross axis (y 축)
+  -->
+<style>
+  div {
+    box-sizing: border-box;
+    border: 1px solid green;
+  }
+</style>
+<style>
+  .wrap1 {
+    width: 300px;
+    display: flex;
+  }
+  .wrap1 > .box {
+    width: 50px;
+  }
+</style>
+<h4>display: flex;</h4>
+<div class="wrap1">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+</div>
+
+<hr/>
+<style>
+  .wrap2 {
+    width: 200px;
+    height: 200px;
+    display: flex;
+  }
+  .wrap2 > .box {
+    width: 50px;
+    height: 50px;
+  }
+  #row {
+    flex-direction: row; /* 디폴트 부모 측에 작성 */
+  }
+  #row-reverse {
+    flex-direction: column-reverse; /* 부모 측에 작성 */
+  }
+  #column {
+    flex-direction: column; /* 부모 측에 작성 */
+  }
+  #column-reverse {
+    flex-direction: column-reverse; /* 부모 측에 작성 */
+  }
+</style>
+
+
+<h4>flex-direction: row;</h4>
+<div class="wrap2" id="row">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+</div>
+
+
+<h4>flex-direction: row-reverse;</h4>
+<div class="wrap2" id="row-reverse">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+</div>
+
+
+<h4>flex-direction: column;</h4>
+<div class="wrap2" id="column">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+</div>
+
+<h4>flex-direction: column-reverse;</h4>
+<div class="wrap2" id="column-reverse">
+  <div class="box">box1</div>
+  <div class="box">box2</div>
+  <div class="box">box3</div>
+</div>
+
+
 </body>
 </html>

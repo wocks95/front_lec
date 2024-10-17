@@ -18,12 +18,23 @@
       top: 0;
       background-color: white;
     }
+    .search {
+      margin: 50px 0;
+      
+    }
+    #text {
+      width: 300px; /* 너비 설정 */
+      height: 40px; /* 높이 설정 */
+      padding: 10px; /* 안쪽 여백 설정 */
+      font-size: 16px; /* 글자 크기 설정 */
+      border: 1px solid #ccc; /* 테두리 설정 */
+      border-radius: 4px; /* 모서리 둥글게 설정 */ 
+    }
     .container {
       width: 70%;
       height: 600px;
       overflow: hidden;
       margin: 200px auto 0;
-     
     }
     .main, .aside {
       border-left: 1px solid gray;
@@ -64,15 +75,20 @@
     }
 
   </style>
-  <div class="header"></div>
+  <div class="header">
+    <div class="search">
+      <label for="text"></label>
+      <input type="text" name="text" id="text" placeholder="검색어를 입력해 주세요.">
+    </div>
+  </div>
   <div class="container">
     <div class="main">
       <div class="main-aside">
         <ul class="news">
-          <li><a href="http://naver.com/">정치</a></li>
-          <li>경제</li>
-          <li>문학</li>
-          <li>군사</li>
+          <li><a href="http://www.naver.com/">네이버</a></li>
+          <li><a href="http://www.google.com/">구글</a></li>
+          <li><a href="http://www.daum.net/">다음</a></li>
+          <li><a href="http://www.kakao.com/">카카오</a></li>
         </ul>
       </div>
     </div>
