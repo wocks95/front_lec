@@ -263,26 +263,44 @@
 
 <hr/>
 <style>
-  .wrap7 {
+  ul, li, a {
+    box-sizing: border-box;
+  }
+  ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .gnb-wrap {
+    width: 1000px;
+    margin: 0 auto;
     border: none;
   }
-  .wrap7 > .menu6 {
+  .gnb {
     width: 100%;
+    border-top: 1px solid gray;
+    border-bottom: 3px solid gray;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
-    list-style: none;
+    justify-content: center;
   }
-  .wrap7 li {
-    align-items: center;
+  .gnb > li {
+    width: 100px;
   }
-  ul li a {
-    color: black; /* 기본 링크 색상 */
-    text-decoration: none; /* 밑줄 제거 */
-    cursor: pointer;
-}
-
+  .gnb > li > a {
+    display: block;
+    width: 100%;
+    height: 50px;
+    color: gray;
+    text-align: center;  /* 가로 가운데 정렬 */
+    line-height: 50px;   /* height 과 값이 같으면 세로 가운데 정렬 효과를 냄 */
+    text-decoration: none;
+  }
+  .gnb > li > a:hover {
+    color: orangered;
+    border-bottom: 3px solid orangered;
+  }
 </style>
 
 <div class="gnb-wrap">
