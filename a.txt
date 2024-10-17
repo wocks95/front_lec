@@ -1,1 +1,7 @@
-hello
+
+2024.10.17(목)
+css
+-layout
+-visibility / display / opacity : visible or hidden
+-transition / transform
+-media query (@media)
