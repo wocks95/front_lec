@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>practice</title>
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+    * {
+      font-family: "Noto Sans KR", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      color: #303030;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="header">kakao</h1>
+  </div>
+  <div>
+    <form method="post"
+          action="http://www.daum.net/">
+      <div class="main-login">
+        <label for="id"></label>
+        <input type="text" name="id" class="login" id="id" placeholder="카카오메일 아이디, 이메일, 전화번호"> 
+      </div>
+      <div class="main-pw">
+        <label for="pw"></label>
+        <input type="password" name="pw" class="pwassword" id="pw" placeholder="비밀번호">
+      </div>
+      <div class="set-login">
+        <span>
+          <input type="checkbox" class="inp-choice" id="simple-login">
+          <label class="lab-choice" for="simple-login">
+              간편로그인 정보 저장
+          </label>
+        </span>
+      </div>
+      <div class="login-btn">
+        <button type="submit" class="login-btn1-1">로그인</button>
+        <button type="button" class="login-btnQr">QR코드 로그인</button>
+      </div>  
+     </form>
+    <div class="info_user">
+      <a href="/join.user/" class="log_join">회원가입</a>
+      <ul class="list-user">
+        <li>
+          <a href="/list.user/" class="link-user">계정찾기</a>
+        </li>
+        <li>
+          <a href="/pw.user/" class="link-user">비밀번호찾기</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+
+
+</body>
+</html>
