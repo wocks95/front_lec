@@ -15,13 +15,13 @@
       width: 300px;
     }
     .screen-out {
-      display: none;
+      display: none; /* radio의 버튼을 감추기 위함 */
     }
     .tab-menu {
-      display: flex;
+      display: flex; /* 동물과 건축물 버튼을 가로로 두기 위함 */
     }
     .tab-menu > label {
-      display: block;
+      display: block; /* label의 인라인 요소를 블락 요소로 변경하여 너비와 높이 등 조정 가능해짐*/
       width: 150px;
       padding: 15px 0;
       font-size: 18px;
@@ -41,7 +41,7 @@
       background-color: #cdcdcd;
     }
     .tab-content {
-      display: none;
+      display: none; /**/
       width: 300px;
       padding: 20px 0 0 15px;
       border: 1px solid #ababab;
@@ -71,8 +71,8 @@
       background-image: url('../assets/images/architecture2.jpg');
     }
     .description {
-      width: 180px;
-
+      width: 180px; /*왼쪽에서부터 오른쪽으로 너비가 시작되는데 300px에서 padding 준 값 15px을 빼고 285px에서 이미지 100px을 빼고
+                      justify-content: space-between 인한 여백 값(5px)을 빼면 180px 이다. */
     }
   </style>
   <div class="wrap">
