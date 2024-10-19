@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 프로필</title>
+        <style>
+        @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+        * {
+        font-family: "Noto Sans KR", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        color: #303030;
+        }
+        a {
+        text-decoration: none;
+        }
+        </style>
+</head>
+<body>
+    <style>
+        body {
+            border: 2px solid gray;
+            border-radius: 10px;
+            width: 1024px;
+            margin: 100px auto;
+        }
+        .header {
+            width: 200px;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .header > div:nth-of-type(1) {
+            color: #474646;
+        }
+        .header > div:nth-of-type(2) {
+            padding-left: 50px;    
+        }
+        .image {
+            width: 200px;
+            height: 200px;
+            margin-left: 412px;
+            background-size: cover;
+            background-position-x: -55px;
+            border-radius: 50px;
+            background-image: url('../assets/images/animal3.jpg');
+            display: flex;
+            
+        }
+        .story {
+            border-top: 4px solid gray;
+            padding: 2px 10px;
+            margin: 10px 0;   
+        }
+        #inl-p {
+            display: block;
+            font-size: 36px;
+            font-weight: 700;
+            color: #474646;
+        }
+        #inl-pre {
+            display: block;
+            font-size: 28px;
+            padding-top: 10px;
+        }
+        .line {
+            border-top: 4px solid gray;
+            margin: 0 auto;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;   
+        }
+        .hobbies {
+            font-size: 24px;
+            font-weight: 700;
+          
+        }
+        .hobbies > li {
+            margin: 0 0 10px 20px;
+        }
+        .hobbies > li::before {
+            content: '▶';
+            margin-right: 10px;
+        }
+        .specialty {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+           
+        }
+        .specialty > li {
+            margin: 0 0 10px 20px;
+        }
+        .specialty > li::before {
+            content: '▶';
+            margin-right: 10px;
+        }
+        .specialty > li:nth-last-of-type(1) {
+            padding-left: 20px;
+        }
+        .email {
+            display: flex;
+            justify-content: flex-end;
+        }
+        #inl-email {
+           display: block;
+           font-size: 24px;
+           color: gray;
+        }
+        .div-email {
+            padding: 5px 5px 0 5px;
+        }
+    </style>
+    <header class="header">
+        <div>이름:</div>
+        <div>KIMBEAR</div>
+    </header>
+    <section class="section">
+        <div class="image">
+        </div>
+        <div class="story">
+            <p id="inl-p">자기소개</p>
+            <pre id="inl-pre">
+            안녕하세요! 
+            저는 웹 개발에 관심이 많고 다양한 취미를 즐기고 있습니다.
+            현재 그린강남아카데미에서 공부중입니다.
+            10월 10일부터 진행되고 있으며 25년4월9일에 끝날 예정입니다.
+            최선을 다하겠습니다.
+        </pre>
+        </div>
+        <div class="line">
+            <ul class="hobbies">취미:
+                <li class="health">운동</li>
+                <li class="game">게임</li>
+                <li class="cook">요리</li>
+            </ul>
+            <ul class="specialty">특기:
+                <li class="health">체력훈련</li>
+                <li class="cook">요리하기</li>
+                <li class="game">컴퓨터게임</li>
+            </ul>    
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="email">
+            <span id="inl-email">이메일:</span>
+            <div class="div-email">BEAR@example.com</div>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>
