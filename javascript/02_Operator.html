@@ -14,24 +14,26 @@
       3) 곱하기 : *            5 * 2 == 10
       4) 나누기 : /,           5 / 2 == 2.5
       5) 나머지 : %,           5 % 2 == 1
+      *TIP. 몫이 필요한 경우
+        parseInt 함수를 사용 parseInt(5 / 2) == 2
 
     2. 증감 연산자
-      1) ++
-      2) --
+      1) ++ : 전위 증가, 후위 증가
+      2) -- : 전위 감소, 후위 감소
 
     3. 대입 연산자 / 복합 대입 연산자
-      1) 대입 : =
+      1) 대입 : =  ex) variable(변수) = value
       2) 복합 : +=, -=, *=, /=, %=
 
     4. 비교 연산자
-      1) greater than          : >
-         greater than equal    : >=
-      2) less than             : <
-         less than equal       : <=
-      3) equal value           : ==  (1 == '1' 결과는 true)
-         equal value, type     : === (1 === '1' 결과는 false)
-      4) not equal value       : !=
-         not equal value, type : !==
+      1) greater than          : >    (크다)
+         greater than equal    : >=   (크거나 같다)
+      2) less than             : <    (작다)
+         less than equal       : <=   (작거나 같다)
+      3) equal value           : ==  (1 == '1' 결과는 true, 숫자1 과 문자 1은 다름) 
+         equal value, type     : === (1 === '1' 결과는 false, weak type 적용하지말고 할당하라는 뜻)
+      4) not equal value       : != (같지 않다)
+         not equal value, type : !== (weak type 적용하지말고 결과를 같지않다로 할당하라는 뜻)
 
     5. 논리 연산자
       1) && : 논리 AND (short circuit 지원)
@@ -44,6 +46,49 @@
     7. 문자열 연결 연산자
       +, +=
 -->
+
+<script>
+  const a = 5;
+  const b = 2;
+  document.write(`<div>${a} + ${b} = ${a + b}</div>`);
+  document.write(`<div>${a} - ${b} = ${a - b}</div>`);
+  document.write(`<div>${a} * ${b} = ${a * b}</div>`);
+  document.write(`<div>${a} / ${b} = ${a / b}</div>`);
+  document.write(`<div>${a} % ${b} = ${a % b}</div>`);
+  document.write(`<div>${a} 몫 ${b} = ${parseInt(a / b)}</div>`);
+</script>
+<hr/>
+<script>
+  let i = 1;
+  let prePlus = ++i; // 전위 증가, i를 먼저 증가한 뒤 prePlus에 할당
+  let postPlus = i++; // 후위 증가, i를 postPlus에 할당한 뒤 나중에 증가
+  document.write(`<div>prePlus = ${prePlus}</div>`);
+  document.write(`<div>postPlus = ${postPlus}</div>`);
+  document.write(`<div>i = ${i}</div>`); 
+</script>
+<hr/>
+<script>
+  let n = 10;
+  document.write(`<div>${n += 10}</div>`); //  n + 10의 결과를 n에 할당 (n = n + 10)
+  document.write(`<div>${n -= 10}</div>`); //  n - 10의 결과를 n에 할당 (n = n - 10)
+  document.write(`<div>${n *= 10}</div>`); //  n * 10의 결과를 n에 할당 (n = n * 10)
+  document.write(`<div>${n /= 10}</div>`); //  n / 10의 결과를 n에 할당 (n = n / 10)
+  document.write(`<div>${n %= 10}</div>`); //  n % 10의 결과를 n에 할당 (n = n % 10)
+</script>
+<hr/>
+<script>
+  const x = 10;
+  const y = 20;
+  const z = '10';
+  document.write(`<div>${x > y}</div>`);
+  document.write(`<div>${x >= y}</div>`);
+  document.write(`<div>${x < y}</div>`);
+  document.write(`<div>${x <= y}</div>`);
+  document.write(`<div>${x == z}</div>`);
+  document.write(`<div>${x === z}</div>`);
+  document.write(`<div>${x != z}</div>`);
+  document.write(`<div>${x !== z}</div>`);
+</script>
 
 <!--
     boolean 타입의 true 와 false
