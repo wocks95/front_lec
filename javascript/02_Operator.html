@@ -36,15 +36,16 @@
          not equal value, type : !== (weak type 적용하지말고 결과를 같지않다로 할당하라는 뜻)
 
     5. 논리 연산자
-      1) && : 논리 AND (short circuit 지원)
-      2) || : 논리 OR  (short circuit 지원)
-      3) !  : 논리 NOT
+      1) && : 논리 AND, 모두 만족하면 true 아니면 false (short circuit 지원)
+      2) || : 논리 OR, 하나만 만족해도 true 아니면 false  (short circuit 지원), enter키 위
+      3) !  : 논리 NOT, true 와 false 를 반대로 바꿈, 부정연산
 
     6. 조건 연산자(삼항 연산자)
       조건식 ? true 일 때 반환 : false 일 때 반환
 
     7. 문자열 연결 연산자
       +, +=
+      // 출력할 때 +나 +=로 할경우 ``아닌 ''로 사용
 -->
 
 <script>
@@ -89,14 +90,76 @@
   document.write(`<div>${x != z}</div>`);
   document.write(`<div>${x !== z}</div>`);
 </script>
+<hr/>
+<script>
+  // 키와 통장잔액
+  const height = 185;
+  const balance = 3000;
+  //난 키가 180이상이고 통장잔액이 5000 이상이면 만나보겠다.
+  document.write(`<div>${height >= 180 && balance >= 5000}</div>`);
+  //난 키가 180 이상이거나 통장잔액이 5000 이상이면 만나보겠다.
+  document.write(`<div>${height >= 180 || balance >= 5000}</div>`);
+  //논리 AMD 의 short circuit 확인 (왼쪽부터 false 가 나오면 더 이상 연산하지 않는다.)
+  document.write(`<div>${balance >= 5000 && ++height >= 180}</div>`);
+  document.write(`<div>${height}</div>`);
+  //논리 OR 의 short circuit 확인 (왼쪽부터 true 가 나오면 더 이상 연산하지 않는다.)
+  document.write(`<div>${height >= 180 || ++balance >= 5000}</div>`);
+  document.write(`<div>${balance}</div>`)
+</script>
+<hr/>
 
 <!--
     boolean 타입의 true 와 false
     1. true  : 데이터가 있으면 true 로 간주한다.  (1, 1.5, 'hello' 등)
-    2. false : 데이터가 없으면 false 로 간주한다. (0, 0.0, '', undefined, null 등)
+    2. false : 데이터가 없으면 false 로 간주한다. (0, 0.0, '', undefined, null 등) *암기*
 -->
+<script>
+  document.write(`<div>${0 == false}, ${0 === false}</div>`);
+  // 간주한다 : 동일한 것으로 생각한다. 진짜 동일한 건 아니다.
+  let cabinet = 'dress';
+  document.write(`<div>${cabinet || 'pack'}</div>`); 
+  // cabinet에 값이 있으면(true) 그 값을 사용하고 , 없으면(false) pack을 사용한다.
+</script>
+<hr/>
+<script>
+  // 삼항 연산자
+  let number = -10;
+  document.write(`<div>${number}는 ${number >= 0 ? '양수' : '음수'}</div>`);
+</script>
+<hr/>
+<script>
+  let age = 11;
+  document.write('<div>나이는 ' + age + '살입니다.</div>');
+</script>
+<hr/>
 
+<!-- 문제. 라면 박스 -->
+<script>
+  /* 라면이 65개 있다. 한 박스에 라면이 20개 들어간다. 몇 박스(box) 나오는지, 남는 라면 몇 개인지 계산하시오. */
+  let ramen = 65;
+  let box;
+  box = parseInt(ramen / 20);
+  ramen %= 20;
+  document.write(`<div>라면 박스 : ${box}개 , 남은 라면 : ${ramen}개</div>`)
+  // document.write(`<div>${ramen} / ${20} = ${ramen / 20}</div>`);
+  // document.write(`<div>box = ${ramen / 20}</div>`);
+  // document.write(`<div>${ramen} % ${20} = ramen = ${ramen % 20}</div>`);
+  // document.write(`<div>ramen = ${ramen % 20}</div>`);
+</script>
+<hr/>
 <!-- 문제. 일급 계산하기 -->
+<script>
+  /*
+    2025년 최저 시급이 10,030원
+    10시간 근무하면 일급이 얼마인가?
+    8시간은 기본 시급, 초과 근무는 기본 시급의 1.5배
+  */
+  const hourlywage = 10030;
+  const workingTime = 10;
+  const regularpay = hourlywage * workingTime; //기본 시급 계산
+  const extraPay = (workingTime <= 8 ? 0 : workingTime - 8) * hourlywage * 0.5;
+  document.write(`<div>${workingTime}시간 근무한 급여는 ${regularpay + extraPay}원입니다.</div>`)
+</script>
 
 </body>
 </html>
