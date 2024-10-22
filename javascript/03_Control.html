@@ -263,6 +263,13 @@ document.write(`<div>${month}월의 계절은 ${season}입니다.</div>`);
 </script>
 <hr/>
 <script>
+  // 연습 문제3. 20까지 차례대로 출력하되, 2의 배수만 출력하기
+  for(let d = 20; d >= 1; d -= 2) {
+    document.write(`<div>${d}</div>`);
+  }
+</script>
+<hr/>
+<script>
   // 문제3. <select>태그 만들기
   document.write ('<select>');
   for(let e = 1; e <= 12; e++) {
@@ -308,6 +315,39 @@ document.write(`<div>${month}월의 계절은 ${season}입니다.</div>`);
   }
 </script>
 <hr/>
+<!--
+  break 문
+  1. switch 문을 종료할 때 사용한다.
+  2. while 문이나 for 문 같은 반복문을 종료할 때 사용한다.
+-->
+<h4>break 문</h4>
+<script>
+  //무한 루프
+  let num = 1;
+  while(true) {
+    if(num > 5) {
+      break;
+    }
+    document.write(`<div>${num++}</div>`)
+  }
+</script>
+<hr/>
+
+<script>
+  // 문제. 구구단 변형하기 각 구구단은 x 5 까지만 출력하시오.
+  for(let dan = 2; dan <= 9; dan++) {
+    document.write(`<div>${dan}단</div>`);
+    for(let su = 1; su <= 9; su++){
+      document.write(`<div>${dan} x ${su} = ${dan * su}</div>`);
+      if(su === 5) {
+        break;
+      }
+    }
+  }
+</script>
+
+
+
 
 
 </body>
