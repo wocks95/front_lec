@@ -129,7 +129,7 @@
     document.write('<div>fut</div>');
   }
   fut();
-  
+
 </script>
 <!--
     인자와 매개변수
@@ -198,27 +198,142 @@
 
 
 </script>
+<hr/>
 <!--
     함수의 중첩
     1. 함수 내부에 또 다른 함수를 선언할 수 있다. (함수 선언식을 사용한다.)
     2. 외부 함수는 내부 함수의 변수를 사용할 수 없다.
     3. 내부 함수는 외부 함수의 변수를 사용할 수 있다.
 -->
+<h4>함수 중첩</h4>
+<script>
+  //외부 함수 : fnOuter, 2
+  function fnOuter (outerParam) {
 
+    //내부 함수 : fnInner (내부 함수는 외부 함수의 내부에서만 호출할 수 있다.), 4
+    function fnInner (innerParam) {
+      document.write(`<div>${innerParam}</div>`);
+      document.write(`<div>${outerParam}</div>`); //내부 함수는 외부 함수의 변수를 참조할 수 있다.
+    }
+    //내부 함수 호출, 3
+    fnInner(outerParam);
 
+  }
+  //함수 호출
+  //fnInner(); 내부 함수 호출 불가능, 1
+  fnOuter(100);
+  </script>
+<hr/>
 <!--
     콜백 함수
     1. 인자로 다른 함수에 전달된 함수를 의미한다.
     2. 함수1을 전달 받은 함수2는 본문에서 함수1을 다시 호출해야 하므로 "callback"이라고 한다.
     3. 함수 이름만 전달하거나 함수 자체를 전달한다.
+      1) 함수 선언식 : 함수이름을 인자로 사용
+      2) 함수 표현식 : 변수명을 인자로 사용
+      3) 익명 함수(function(){} 또는 ()=>{})를 직접 인자로 사용
 -->
+<h4>콜백 함수</h4>
+<script>
+  /*1. 함수이름 전달하기 */
+  function fnLogin(fnSub1, fnSub2) {
+    fnSub1();
+    fnSub2();
+  }
+  function fnIDCheck() {
+    document.write('<div>ID Check Complete</div');
+  }
+  function fnPwCheck() {
+    document.write('<div>Pw Check Complete</div');
+  }
+  //함수 호출 시 함수이름을 인자로 사용
+  fnLogin(fnIDCheck, fnPwCheck);
+
+  /* 2. 변수명 전달하기 */
+  const fnLogout = function(fnSub1, fnSub2) {
+    fnSub1();
+    fnSub2();
+  }
+  const fnSessionCheck = function() {
+    document.write('<div>Session check complate</div>');
+  }
+  const fnSessionClean = function() {
+    document.write('<div>Session Clean Complete</div>');
+  }
+
+  //함수 호출 시 변수명을 인자로 사용
+  fnLogout(fnSessionCheck, fnSessionClean);
+
+  /* 3. 익명 함수 직접 전달하기 */
+  function fnSignUp(fnSub) {
+    fnSub();
+  }
+  //함수 호출 시 익명 함수를 직접 전달 (자주 사용되는 방식)
+  fnSignUp(function() {
+    document.write('<div>Authentication Complete</div>');
+  });
+</script>
 
 <!--
     반환
+      *반환 : 함수 실행이 끝나고 함수를 호출한 곳으로 돌려보내는 값을 의미한다.
     1. 반환 값이 존재하더라도 반환타입은 작성하지 않는다.
     2. "return 값" 을 통해서 값을 반환할 수 있다.
     3. "return" 을 통해서 함수 실행을 종료할 수 있다.
 -->
+<h4>반환</h4>
+<script>
+
+  function fnRetOne() {
+    return 1; //함수를 호출한 곳으로 1을 반환하시오.
+  }
+  document.write(`<div>${fnRetOne()}</div>`);
+
+  /* 인자보다 1 큰 값을 반환하는 함수 */
+  function fnPlusOne(param) {
+    return param + 1;
+  }
+  document.write(`<div>${fnPlusOne(10)}</div>`);
+
+  /* 배열을 반환하는 함수 */
+  function fnRetAry() {
+    return ['봄', '여름', '가을', '겨울'];
+  }
+  const [a, b] = fnRetAry(); //구조 분해 할당, const [a, b] = ['봄', '여름', '가을', '겨울'];
+  document.write(`<div>${a}, ${b}</div>`);
+
+  /* 객체를 반환하는 함수 */
+  function fnRetObj() {
+    return {
+      cpu: 'i7',
+      memory: '32GB',
+      gpu: 'GTX4090',
+      ssd: '1TB',      
+    }
+  }
+  const {cpu, memory} = fnRetObj(); //구조 분해 할당
+  document.write(`<div>${cpu} ${memory}</div>`);
+
+  const computer = fnRetObj(); //객체 전체를 받기
+  document.write(`<div>${computer.cpu} ${computer.memory} ${computer.gpu} ${computer.ssd}</div>`);
+</script>
+<hr/>
+<script>
+
+  //함수 실행 종료를 위한 return 문
+  function fnEat(food) {
+    if(food === '대봉')
+      return; //함수 실행 종료 코드
+    document.write(`<div>${food} 잘먹겠습니다.</div>`);
+  }
+
+  fnEat('사과');
+  fnEat('샤인머스켓');
+  fnEat('대봉');
+
+</script>
+<hr/>
+
 
 <!-- 문제1. checkWeight() 함수 구현하기 -->
 <h4>checkWeight() 함수</h4>
@@ -226,13 +341,33 @@
   /*
     checkWeight() 함수
     1. 기능
-      인자로 전달된 몸무게가 40 이상 90 미만이면 true, 40 미만이면 보호자의 동의 여부(confirm 이용), 90 이상이면 false 를 반환하는 함수
+      인자로 전달된 몸무게가 40 이상 90 미만이면 true, 
+      40 미만이면 보호자의 동의 여부(confirm 이용), 90 이상이면 false 를 반환하는 함수
     2. 인자
       몸무게
     3. 반환
       boolean
   */
+  // 미리 만들어진 function 함수
+  // const yeno = confirm('확인 또는 취소?');
+  // document.write(yesno);
 
+  function checkWeight(weight) {
+    /* if(weight >= 90) {
+      return false;
+    } else if(weight >= 40) {
+      return true;
+    } else {
+      return confirm('부모님의 동의가 필요합니다. 동의하시면 확인 아니면 취소를 눌러주세요.');
+    } */
+   return weight >= 90 ? false : weight >= 40 ? true : confirm('부모님의 동의가 필요합니다. 동의하시면 확인 아니면 취소를 눌러주세요.');
+  } 
+  weight = 50; // prompt('몸무게를 입력하세요.');
+  if(checkWeight(weight)) {
+    document.write('<div>놀이기구 탑승이 가능합니다.</div>');
+  } else {
+    document.write('<div>놀이기구 탑승이 거절되었습니다.</div>');
+  }
 </script>
 <hr>
 
@@ -251,7 +386,15 @@
     2. 반환
       없음
   */
+function repeatDo(fnSub, count) {
+  for(let n = 0; n < count; n++)
+    fnSub();
+}
 
+//함수 호출
+repeatDo(function () {
+  document.write('<div>Do Something!</div>');
+}, 3)
 </script>
 <hr>
 
@@ -271,7 +414,20 @@
     3. 반환
       연산 수행 결과 값
   */
+  function add(a, b) { return a + b;}
+  function subtract(a, b) { return a - b;}
+  function multiply(a, b) { return a * b;}
+  function divide(a, b) { return a / b;}
 
+  function calculate(fnSub, a, b) {     //calculated의 fnSub는 아래의 add이고 (a, b)는 아래의 value1, value2이다.
+    return fnSub(a, b);
+  }
+  const value1 = 5;
+  const value2 = 2;
+  document.write(`<div>${value1} + ${value2} = ${calculate(add, value1, value2)}</div>`);
+  document.write(`<div>${value1} - ${value2} = ${calculate(subtract, value1, value2)}</div>`);
+  document.write(`<div>${value1}  ${value2} = ${calculate(multiply, value1, value2)}</div>`);
+  document.write(`<div>${value1} / ${value2} = ${calculate(divide, value1, value2)}</div>`);
 </script>
 <hr>
 
