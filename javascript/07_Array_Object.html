@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<!--
+    Array 내장 객체
+
+    1. Array.isArray(value)
+        → 전달된 value 가 Array 이면 true 아니면 false 반환
+
+    2. Array.prototype.pop()
+        → 배열의 마지막 요소를 제거하고 그 요소를 반환
+        → 배열이 비어 있으면 undefined 반환
+    
+    3. Array.prototype.push(element1[, element2[, ...]])
+        → 배열의 끝에 하나 이상의 요소를 추가하고 배열의 새로운 길이를 반환
+        
+    4. Array.prototype.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+        → 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경함
+        → start : 배열의 변경을 시작할 인덱스
+        → 옵션 deleteCount : 배열에서 제거할 요소의 개수
+          1) 생략하면 start 부터 모든 요소를 제거
+          2) 0 이하이면 아무 요소도 제거하지 않음
+        → 옵션 item1, item2, ... : 배열에 추가할 요소들
+
+    5. Array.prototype.forEach(callbackFn(element[, index[, array]])[, thisArg])
+        → 각 배열 요소에 대해 제공한 callbackFn 함수를 한 번씩 실행함
+        → callbackFn
+          1) 반환값 : 없음(undefined)
+          2) 매개변수
+            (1) element : 배열에서 처리 중인 현재 요소
+            (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
+            (3) array   : forEach() 메소드를 호출한 배열
+        → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+
+    6. Array.prototype.map(callbackFn(currentValue[, index[, array]])[, thisArg])
+        → 제공된 callbackFn 함수에 의해 반환된 요소들을 모은 새로운 배열을 반환함
+        → callbackFn
+          1) 반환값 : 배열의 각 요소를 callbackFn 내부에서 처리한 값
+          2) 매개변수
+            (1) currentValue : 처리할 현재 요소
+            (2) index        : 처리할 현재 요소의 인덱스
+            (3) array        : map() 메소드를 호출한 배열
+        → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+
+    7. Array.prototype.filter(callbackFn(element[, index[, array]])[, thisArg])
+        → 제공된 callbackFn 함수에 의해 구현된 테스트를 통과한 요소들만 모은 새로운 배열을 반환함
+        → callbackFn
+          1) 반환값 : true 또는 false
+          2) 매개변수
+            (1) element : 배열에서 처리 중인 현재 요소
+            (2) index   : 배열에서 처리 중인 현재 요소의 인덱스
+            (3) array   : filter() 메소드를 호출한 배열
+        → thisArg(Optional) : callbackFn을 실행할 때 this로 사용되는 값
+    
+    8. Array.prototype.entries()
+        → 배열의 각 인덱스에 대한 키/값 쌍을 포함하는 새 배열 반복자(Iterator) 객체를 반환
+-->
+
+<!-- 문제1. displayImage() 함수 구현하기 -->
+<h4>displayImage() 함수</h4>
+<script>
+  /*
+    displayImage() 함수
+    1. 기능
+      인자로 전달된 배열에 포함된 모든 이미지를 화면에 출력하는 함수
+    2. 인자
+      이미지 파일의 이름이 저장된 배열
+    3. 반환
+      없음
+  */
+
+</script>
+<hr>
+
+
+
+<!-- 문제2. print() 함수 구현하기 -->
+<h4>print() 함수</h4>
+<script>
+  /*
+    displayImage() 함수
+    1. 기능
+      전달된 인자가 배열이면 forEach()를 이용한 순회 출력 아니면 그냥 출력하는 함수
+    2. 인자
+      임의의 인자(배열 또는 배열 아닌 모든 것) 1개
+    3. 반환
+      없음
+  */
+  
+</script>
+<hr>
+
+</body>
+</html>

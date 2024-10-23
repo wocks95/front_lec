@@ -179,7 +179,8 @@
     '구글', 'https://www.google.com/',
     '카카오', 'https://www.kakao.com/'
   ];
-  document.write ('<select>'); // select 태그 안에 ohchange라는 이벤트를 넣어야 링크 이동 가능하지만 아직 안 배움
+  document.write ('<select>'); 
+  // select 태그 안에 ohchange라는 이벤트를 넣어야 링크 이동 가능하지만 아직 안 배움
   for(let i = 0; i < sites1.length; i += 2) {
     document.write (`<option value="${sites1[i + 1]}">${sites[i]}</option>`);
   } 
