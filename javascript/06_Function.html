@@ -45,11 +45,12 @@
     5. 함수 표현식 예시
       1) 익명 함수
         // 함수 표현식 (함수를 만들어서 변수에 할당한다.)
-        const expression = function() {
+        const expression(표현, 변수) = function() {
           본문
         }
         /함수 호출 (함수를 사용한다.)
         expression();
+
       2) 기명 함수
         function named() {
           본문
@@ -159,9 +160,21 @@
   var arg = 300;
   fnArgs(arg); //1번
 
-
-  
 </script>
+<hr/>
+<h4>인자와 매개변수(연습)</h4>
+<script>
+ function fnTrgs(abcd) {
+  document.write(`<div>전달된 인자 : ${abcd}</div>`);
+} 
+
+fnTrgs(6000);
+
+let abc = (7000);
+fnTrgs(abc);
+</script>
+<hr/>
+
 <script>
 
   //전개 구문(Spread Syntax) 활용
@@ -177,7 +190,16 @@
       document.write(`<div>${params[i]}</div>`);
     }
   }
+  fnSyntax();
+  fnSyntax(1000);
+  fnSyntax(1000, 2000, 3000);
+  function fnSyntax(...par) {
+    for(i = 0; i < par.length; i++) {
+      document.write(`<div>${par[i]}</div>`)
+    }
+  }
 </script>
+<hr/>
 <script>
   //매개변수의 디폴트 값
 
@@ -196,6 +218,13 @@
     document.write(`<div>${param1}, ${param2}</div>`);
   }
 
+  fnFault(1000);
+  fnFault(1000, 2000);
+  fnFault(1000, 2000, 3000);
+
+  function fnFault(par1, par2 = 1, par3 = 2) {
+    document.write(`<div>${par1}, ${par2}, ${par3}</div>`);
+  }
 
 </script>
 <hr/>
@@ -209,7 +238,7 @@
 <script>
   //외부 함수 : fnOuter, 2
   function fnOuter (outerParam) {
-
+    document.write(`<div>${outerParam}</div>`);
     //내부 함수 : fnInner (내부 함수는 외부 함수의 내부에서만 호출할 수 있다.), 4
     function fnInner (innerParam) {
       document.write(`<div>${innerParam}</div>`);
@@ -221,7 +250,7 @@
   }
   //함수 호출
   //fnInner(); 내부 함수 호출 불가능, 1
-  fnOuter(100);
+  fnOuter(100); // 1
   </script>
 <hr/>
 <!--
@@ -255,7 +284,7 @@
     fnSub2();
   }
   const fnSessionCheck = function() {
-    document.write('<div>Session check complate</div>');
+    document.write('<div>Session check complete</div>');
   }
   const fnSessionClean = function() {
     document.write('<div>Session Clean Complete</div>');
@@ -419,7 +448,8 @@ repeatDo(function () {
   function multiply(a, b) { return a * b;}
   function divide(a, b) { return a / b;}
 
-  function calculate(fnSub, a, b) {     //calculated의 fnSub는 아래의 add이고 (a, b)는 아래의 value1, value2이다.
+  function calculate(fnSub, a, b) { 
+    //calculated의 fnSub는 아래의 add이고 (a, b)는 아래의 value1, value2이다.
     return fnSub(a, b);
   }
   const value1 = 5;
@@ -429,7 +459,7 @@ repeatDo(function () {
   document.write(`<div>${value1}  ${value2} = ${calculate(multiply, value1, value2)}</div>`);
   document.write(`<div>${value1} / ${value2} = ${calculate(divide, value1, value2)}</div>`);
 </script>
-<hr>
+<hr/>
 
 </body>
 </html>
