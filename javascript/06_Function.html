@@ -79,9 +79,9 @@
       2) 객체를 생성하는 생성자로 사용할 수 없다.
       3) 객체에 포함된 메소드로 사용할 수 없다.
     3. 문법 특징
-      1) 단일 매개변수인 경우 매개변수 소괄호()를 생략할 수 있다.
-      2) 단일 실행문인 경우 본문 중괄호{}를 생략할 수 있다.
-      3) 단일 return 인 경우 return 키워드 자체를 생략할 수 있다.
+      1) '단일' 매개변수인 경우 매개변수 소괄호()를 생략할 수 있다.
+      2) '단일' 실행문인 경우 본문 중괄호{}를 생략할 수 있다.
+      3) '단일' return 인 경우 return 키워드 자체를 생략할 수 있다.
     4. 화살표 함수의 여러 예시들
       1) () => expression
       2) param => expression
@@ -363,6 +363,29 @@ fnTrgs(abc);
 </script>
 <hr/>
 
+<h4>화살표 함수 다루기</h4>
+<script>
+  // 인자x, 반환x
+  const fnArgRet1= () => {
+    document.write('<div>fnArgRet1</div>');
+  }
+  fnArgRet1();
+  // 본문 실행 코드가 1개이면 중괄호{} 생략
+  const fnArgRet2= () => document.write('<div>fnArgRet2</div>');
+  fnArgRet2();
+
+  //인자o, 반환x
+  const fnArgRet3 = param => document.write(`<div>fnArgRet3 : ${param}</div>`);
+  fnArgRet3(10); //   ㄴ단일 매개변수이면 소괄호()를 생략할 수 있다.
+
+  //인자x, 반환o
+  const fnArgRet4 = () => 'hello'; // 함수 본문이 return뿐이면 return 문 생략
+  document.write(`<div>fnArgRet4 : ${fnArgRet4()}</div>`);
+  
+  //인자o, 반환o
+  const fnArgRet5 = param => param + 1;
+  document.write(`<div>fnArgRet5 : ${fnArgRet5(10)}</div>`);
+</script>
 
 <!-- 문제1. checkWeight() 함수 구현하기 -->
 <h4>checkWeight() 함수</h4>
