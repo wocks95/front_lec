@@ -98,46 +98,56 @@
 <h4>Array 메소드 실습</h4>
 <script>
   let months = ['Jen', 'Mar', 'April', 'April', 'June'];
-
+  let starBucks = ['Amaricano', 'Latte', 'Latte', 'Frappuccino','Teabana']
   //Array.isArray()
   document.write(`<div>${Array.isArray(months)}</div>`);
-
+  document.write(`<div>${Array.isArray(starBucks)}</div>`);
   //Array.prototype.pop() : 마지막 요소 삭제
   //['Jen', 'Mar', 'April', 'April']
   document.write(`<div>${months.pop()}</div>`);
-
+  document.write(`<div>${starBucks.pop()}</div>`);
   //Arrray.prototype.push() : 마지막 요소 추가 ,  배열의 길이가 5가 되었음을 알림
   //['Jen', 'Mar', 'April', 'April', 'May']
   document.write(`<div>${months.push('May')}</div>`);
-
+  document.write(`<div>${starBucks.push('Cappuccino')}</div>`);
   //Array.prototype.splice() -추가/ 삭제/ 수정 모두 가능한 메소드
   //['Jen', 'Mar', 'April', 'May']
   months.splice(2,1); //인덱스 2부터 1개 요소 삭제
-
+  starBucks.splice(1, 1);
   //['Jen', 'Feb', 'Mar', 'April', 'May']
   months.splice(1, 0, 'Feb'); //인덱스 1부터 0개 요소 삭제 후 'Feb' 추가
-
+  starBucks.splice(1, 0, 'Blended');
   //['Jan', 'Feb', 'Mar', 'April', 'May']
   months.splice(0, 1, 'Jan'); //인덱스 0부터 1개 요소 삭제 후 'Jan' 추가
   for (let i = 0; i < months.length; i++) {
     document.write(`<div>${months[i]}</div>`);
   }
-
+  starBucks.splice(0, 1, 'Americano');
+  for(let i = 0; i < starBucks.length; i++) {
+    document.write(`<div>${starBucks[i]}</div>`);
+  }
   //Array.prototype.forEach() :배열 순회, callbackfn
   //forEach는 기존의 배열을 반환해주는 것이 아니라 첫번째 메소드를 적용해서 새로운 배열을 반환하는 방식이다.
   months.forEach(element =>document.write(`<div>${element}</div>`));
   months.forEach((element, i) => document.write(`<div>${i + 1}월 : ${element}</div>`));
 
+  starBucks.forEach(element1 =>document.write(`<div>${element1}</div>`));
+  starBucks.forEach((element1, i) =>document.write(`<div>${i + 'star'}bucks : ${element1}</div>`));
   //Array.prototype.map() : 새로운 배열을 반환
   //['Jan월', 'Feb월', 'Mar월', 'April월', 'May월'] 메소드 연결(체이닝)
   months
     .map(element =>  element + '월')
     .forEach(element => document.write(`<div>${element}</div>`));
-
+  starBucks
+    .map(element1 => element1 + '메뉴판')
+    .forEach(element1 => document.write(`<div>${element1}</div>`));
   //Array.prototype.filter() : 조건식을 만족하는 요소만 가지는 새로운 배열을 반환
   months
     .filter((element, i) => i % 2 === 0)//인덱스를 2로 나눈 나머지가 0인 요소(인덱스가 짝수)만 모아서 배열로 반환
     .forEach((element, i) => document.write(`<div>${element}</div>`));
+  starBucks
+    .filter((element1, i) => i % 3 === 0)
+    .forEach((element1, i) => document.write(`<div>${element1}</div>`));
   //Array.prototype.entries() : 인덱스/요소를 쌍으로 가진 새로운 배열 반복자를 반환
   var itr = months.entries();
   console.log(itr);  
