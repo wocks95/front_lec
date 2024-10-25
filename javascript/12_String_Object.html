@@ -11,7 +11,7 @@
     String 내장 객체
 
     1. String.length 속성
-        → 문자열의 길이 반환
+        → 문자열의 길이(글자 수) 반환
 
     2. String.prototype.at(index)
         → index 위치의 UTF-16 String 반환(마이너스 index 가능)
@@ -20,7 +20,8 @@
         → index 위치의 유니코드 단일 문자 반환
 
     4. String.prototype.concat(string2, string3[, ..., stringN])
-        → 전달된 모든 문자열을 호출 문자열에 붙인 새로운 문자열 반환 (+ 또는 += 연산자의 성능이 concat() 보다 더 우수하다.)
+        → 전달된 모든 문자열을 호출 문자열에 붙인 새로운 문자열 반환 
+        (+ 또는 += 연산자의 성능이 concat() 보다 더 우수하다.)
 
     5. String.prototype.indexOf(searchValue[, fromIndex])
         → 전달된 searchValue(문자열)와 일치하는 첫 번째 index 반환, 없으면 -1 반환
@@ -30,16 +31,16 @@
         → 전달된 문자열과 일치하는 마지막 index 반환, 없으면 -1 반환
         → 옵션 fromIndex : 탐색의 시작점으로 사용할 index, 기본값은 +Infinity, fromIndex >= str.length 인 경우 모든 문자열을 탐색
 
-    7. String.prototype.startsWith(searchString[, position])
+    7. String.prototype.startsWith(searchString[, position])  > if 문에서 사용
         → 전달된 searchString으로 시작하면 true 아니면 false 반환
         → 옵션 position : searchString이 발견될 것으로 예상되는 시작 위치 index, 기본값은 0
 
-    8. String.prototype.endsWith(searchString[, length])
+    8. String.prototype.endsWith(searchString[, length])      >if 문에서 사용
         → 전달된 searchString으로 끝나면 true 아니면 false 반환
         → 옵션 length : 찾고자 하는 문자열의 길이, 기본값은 문자열의 전체 길이
 
-    9. String.prototype.match(regexp)
-        → 전달된 정규식과 일치하는 요소들을 Array로 반환, 일치하지 않으면 null 반환
+    9. String.prototype.match(regexp(정규식))
+        → 전달된 정규식과 일치하는 요소들을 Array(배열)로 반환, 일치하지 않으면 null 반환
     
     10. String.prototype.search(regexp)
         → 전달된 정규식과 일치하는 첫 번째 항목의 인덱스를 반환, 일치하지 않으면 -1 반환
@@ -53,14 +54,16 @@
         → 옵션 padString : 현재 문자열에 채워넣을 다른 문자열, 기본값은 " "(유니코드 U+0020)
 
     13. String.prototype.replace(pattern, replacement)
-        → 전달된 pattern(문자열 또는 정규식)과 일치하는 항목 일부 또는 전체가 replacement로 대치된 새로운 문자열 반환
+        → 전달된 pattern(문자열 또는 정규식 /[A-Z]/g)과 일치하는 항목 일부 
+          또는 전체가 replacement로 대치된 새로운 문자열 반환
         → pattern이 문자열이라면 첫 번째 일치 항목만 replacement로 대치
     
     14. String.prototype.replaceAll(pattern, replacement)
-        → 전달된 pattern(문자열 또는 정규식)과 일치하는 항목 전체가 replacement로 대치된 새로운 문자열 반환
+        → 전달된 pattern(문자열 또는 정규식)과 일치하는 항목 
+          전체가 replacement로 대치된 새로운 문자열 반환
         → pattern이 정규식이라면 전역(g) 플래그가 설정되어 있어야 함
 
-    15. String.prototype.slice(indexStart)
+    15. String.prototype.slice(indexStart) (-indax를 지원)
         → indexStart를 포함해서 문자열 끝까지 반환
         String.prototype.slice(indexStart, indexEnd)
         → indexStart를 포함하고 indexEnd를 제외한 문자열을 반환
@@ -94,7 +97,58 @@
         → 호출 문자열의 시작과 끝에서 공백이 제거된 새로운 문자열을 반환
         → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 -->
+<h4>string 내장 객체</h4>
+<script>
 
+  const str = 'JavaScript';
+  // length / at / charAt
+  document.write(`<div>길이 : ${str.length}</div>`);
+  document.write(`<div>첫 글자 : ${str.at(0)}</div>`);
+  document.write(`<div>첫 글자 : ${str.charAt(0)}</div>`);
+  document.write(`<div>마지막 글자 : ${str.at(-1)}</div>`); // -1은 마지막 글자의 인덱스
+  document.write(`<div>마지막 글자 : ${str.charAt(str.length - 1)}</div>`); // 마이너스 인덱스는 charAt 실현 안됨
+  //indexOf / lastIndexOf
+  document.write(`<div>첫 번째 소문자 a 의 인덱스 : ${str.indexOf('a')}</div>`);
+  document.write(`<div>마지막 소문자 a 의 인덱스 : ${str.lastIndexOf('a')}</div>`);
+  //str.startsWith / str.endsWith
+  if(str.startsWith('Java')) {
+    document.write('<div>Java로 시작합니다.</div>');
+  }
+  if(str.endsWith('Script')) {
+    document.write('<duv>Script로 끝납니다.</div>');
+  }
+  //match / search
+  const regUpper = /[A-Z]/g; //대문자 정규식
+  document.write(`<div>${str.match(regUpper)}</div>`); // 발견한 대문자(정규식)를 찾아서 배열로 전환
+  document.write(`<div>${str.search(regUpper)}</div>`); //발견된 첫번째 대문자의 인덱스를 반환
+
+  //padStart / padEnd
+  document.write(`<div>${str.padStart(15, '*')}</div>`); //str 의  길이가 15가 되도록 *를 왼쪽에 채우시오.
+  document.write(`<div>${str.padEnd(15, '*')}</div>`);   //str 의  길이가 15가 되도록 *를 오른쪽에 채우시오.
+
+  //replace
+  document.write(`<div>${str.replace('a', 'A')}</div>`); //문자열 'a'는 첫 번째 항목만 'A'로 바뀜
+ 
+  //replaceAll
+  document.write(`<div>${str.replaceAll('a', 'A')}</div>`); //모든 'a'가 'A'로 바뀜
+  
+  document.write(`<div>${str.replace(/[A-Z]/g, 'Y')}</div>`);  
+  document.write(`<div>${str.replaceAll(/[A-Z]/g, 'A')}</div>`);
+
+  //slice / substring
+  document.write(`<div>${str.slice(4)}</div>`);    // 인덱스 4부터 끝까지
+  document.write(`<div>${str.slice(0, 4)}</div>`); // 인덱스 0부터 인덱스 3까지
+  
+  document.write(`<div>${str.substring(4)}</div>`);    // 인덱스 4부터 끝까지
+  document.write(`<div>${str.substring(0, 4)}</div>`); // 인덱스 0부터 인덱스 3까지
+  
+  document.write(`<div>${str.substr(4)}</div>`);    // 인덱스 4부터 끝까지 (deprecated), 되도록 쓰지 말것
+  document.write(`<div>${str.substr(0, 4)}</div>`); // 인덱스 0부터 4글자 수까지 (deprecated)
+  //slice는 -index 지원
+  document.write(`<div>${str.slice(-6)}</div>`);    // 인덱스 -6부터(뒤에서 6번째 글자) 끝까지
+  document.write(`<div>${str.slice(-10, -6)}</div>`); // 인덱스 -10부터 인덱스 -7까지
+
+</script>
 
 
 <!-- 문제1. addCarMaker() 함수 구현하기 -->
@@ -103,7 +157,8 @@
   /*
     addCarMaker() 함수
     1. 기능
-      K로 시작하면 maker: 'Kia', G로 시작하면 maker: 'Genesis'를 전달된 배열의 각 car 객체에 추가하고 Console 에 출력하는 함수
+      K로 시작하면 maker: 'Kia', G로 시작하면 maker: 'Genesis'를 전달된 
+      배열의 각 car 객체에 추가하고 Console 에 출력하는 함수
     2. 인자
       car 객체가 저장된 배열
     3. 반환
