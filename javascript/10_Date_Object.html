@@ -14,7 +14,7 @@
         → 특정 날짜와 시간을 가진 Date 객체를 반환
         → 호출 형식
           1) new Date()
-          2) new Date(value)                 // value : unix timestamp
+          2) new Date(value)                 // value : unix timestamp (1970-01-01 0:00:00 초부터 카운트하는 시간(단위:밀리초))
           3) new Date(dateString)            // 문자열 인식의 경우 동작이 일관적이지 않으므로 사용 안 하기를 권장
           4) new Date(year, monthIndex)      // monthIndex : 0 ~ 11
           5) new Date(year, monthIndex, day)
@@ -30,7 +30,7 @@
         → 현지 시간 기준 연도 반환
     
     4. Date.prototype.getMonth()
-        → 현지 시간 기준 월 반환 (0 - 11)
+        → 현지 시간 기준 월Indax 반환 (0 - 11)
 
     5. Date.prototype.getDate()
         → 현지 시간 기준 일 반환 (1 - 31)
@@ -50,7 +50,52 @@
     10. Date.prototype.getTime()
         → 지정된 날짜의 시간에 해당하는 숫자 값 반환 (타임스탬프 값 반환)
 -->
+<h4>Date 내장 객체</h4>
+<script>
 
+  // 현재 날짜와 시간
+  const strNow = Date(); //string 타입 string이 지원하는 타입만 사용가능
+  const objNow = new Date(); //object 타입 Date.가 지원하는 타입만 사용가능
+  document.write(`<div>${strNow}, ${typeof strNow}</div>`);
+  document.write(`<div>${objNow}, ${typeof objNow}</div>`);
+
+  // 특정 날짜와 시간
+  const datetime = new Date(2024, 0, 1, 12, 0, 0); //2024-01-01 12:00:00
+  document.write(`<div>datetime : ${datetime}</div>`);
+
+  // 자동 고침 기능
+  const someday = new Date(2024, 0 , 32); //2024-01-32 ?
+  document.write(`<div>someday : ${someday}</div>`);
+
+  // 단위 추출
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const dayNo = now.getDay();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const second = now.getSeconds();
+  const millis = now.getMilliseconds();
+  
+  //2024-10-25 금요일 오전 9:55:30.456 만들기
+  const result = year + '-' + 
+                (month < 10 ? '0' + month : month) + '-' + 
+                (day < 10 ? '0' + day : day) + ' ' + 
+                ['일', '월', '화', '수', '목', '금', '토'][dayNo] + '요일 ' +
+                (hour >= 12 ? '오후' : '오전') + ' ' +
+                (hour <= 12 ? hour : hour % 12) + ':' + 
+                (minute < 10 ? '0' + minute : minute) + ':' +
+                (second < 10 ? '0' + second : second) + '.' + 
+                (millis < 10 ? '00' + millis : millis < 100 ? '0' + millis : millis);
+  document.write(`<div>${result}</div>`);
+
+  // 타임스탬프
+  const timestamp1 = now.getTime();
+  const timestamp2 = Date.now();
+  document.write(`<div>${timestamp1} ${timestamp2}</div>`);
+
+</script>
 
 
 <!-- 문제. stopWatch() 함수 구현하기 -->
@@ -65,7 +110,36 @@
     3. 반환
       함수를 수행하는데 걸린 시간(밀리초)
   */
+  const stopWatch = (callback) => {
+    const beginTime = Date.now();
+    callback();
+    const endTime = Date.now();
+    return endTime - beginTime;
+  }
+  const justDoIt = () => {
+    let total = 0;
+    for(let i = 0; i <1000000; i++) {
+      total += i;
+    }
+    document.write(`<div>${total}</div>`);
+  }
+  const dueTime = stopWatch(justDoIt);
+  document.write(`<div>소요시간 : ${dueTime}millis</div>`);
 
+  /*function stopWatch(func) {
+    const  start = new Date();
+
+    func();
+
+    const end = new Date();
+
+    return end - start;
+ }
+
+const timeTaken = stopWatch (()=> {
+  for(let i = 0; i < 1000000; i++) {}
+});
+document.write(`<div>걸린 시간 : ${timeTaken} 밀리초</div>`); */
 </script>
 <hr>
 
