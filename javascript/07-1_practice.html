@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>practice</title>
+</head>
+<h4>화살표 함수 다루기</h4>
+<script>
+  // 인자x, 반환x
+  const fnArgRet1= () => {
+    document.write('<div>fnArgRet1</div>');
+  }
+  fnArgRet1();
+
+  const fnArrow = () => {
+    document.write(`<div>fnArrow</div>`);
+  }
+  fnArrow();
+
+  // 본문 실행 코드가 1개이면 중괄호{} 생략
+  const fnArgRet2= () => document.write('<div>fnArgRet2</div>');
+  fnArgRet2();
+
+  const fnArrow1 = () => document.write(`<div>fnArrow1</div>`);
+  fnArrow1();
+
+  //인자o, 반환x
+  const fnArgRet3 = param => document.write(`<div>fnArgRet3 : ${param}</div>`);
+  fnArgRet3(10); //   ㄴ단일 매개변수이면 소괄호()를 생략할 수 있다.
+
+  const fnArrow2 = param1 => document.write(`<div>fnArrow2 : ${param1}</div>`);
+  fnArrow2(100);
+
+  //인자x, 반환o
+  const fnArgRet4 = () => 'hello'; // 함수 본문이 return뿐이면 return 문 생략
+  document.write(`<div>fnArgRet4 : ${fnArgRet4()}</div>`);
+
+  const fnArrow3 = () => 'hello';
+  document.write(`<div>fnArrow3 : ${fnArrow3()}</div>`);
+  
+  //인자o, 반환o
+  const fnArgRet5 = param => param + 1;
+  document.write(`<div>fnArgRet5 : ${fnArgRet5(10)}</div>`);
+
+  const fnArrow4 = param1 => param1 + 1;
+  document.write(`<div>fnArrow4 : ${fnArrow4(100)}</div>`);
+
+</script>
+<hr/>
+
+<h4>반환</h4>
+<script>
+  /*function fnRetOne() {
+    return 1; //함수를 호출한 곳으로 1을 반환하시오.
+  }
+  document.write(`<div>${fnRetOne()}</div>`); */
+
+  const fnRetOne = () => 1;
+  document.write(`<div>${fnRetOne()}</div>`);
+
+
+  /* 인자보다 1 큰 값을 반환하는 함수 */
+  /* function fnPlusOne(param) {
+    return param + 1;
+  }
+  document.write(`<div>${fnPlusOne(10)}</div>`); */
+
+  const fnPlusOne = (param1) => param1 + 1;
+  document.write(`<div>${fnPlusOne(100)}</div>`);
+
+  /* 배열을 반환하는 함수 */
+  /* function fnRetAry() {
+    return ['봄', '여름', '가을', '겨울'];
+  }
+  const [a, b] = fnRetAry(); //구조 분해 할당, const [a, b] = ['봄', '여름', '가을', '겨울'];
+  document.write(`<div>${a}, ${b}</div>`); */
+
+  const fnRetAry = () => ['가', '나', '다', '라'];
+  const [a, b, c] = fnRetAry();
+  document.write(`<div>${a}, ${b}, ${c}</div>`);
+
+  /* 객체를 반환하는 함수 */
+  /* function fnRetObj() {
+    return {
+      cpu: 'i7',
+      memory: '32GB',
+      gpu: 'GTX4090',
+      ssd: '1TB',      
+    }
+  }
+  const {cpu, memory} = fnRetObj(); //구조 분해 할당
+  document.write(`<div>${cpu} ${memory}</div>`);
+
+  const computer = fnRetObj(); //객체 전체를 받기
+  document.write(`<div>${computer.cpu} ${computer.memory} ${computer.gpu} ${computer.ssd}</div>`); */
+  
+  const fnRetObj = () => {
+    return {
+      cpu: 'i9',
+      memory: '4TB',
+      gpu: 'GTX4090i',
+      ssd: '2TB'
+    }
+  }
+  const {cpu, ssd} = fnRetObj();
+  document.write(`<div>${cpu} ${ssd}</div>`);
+
+  const computer = fnRetObj();
+  document.write(`<div>${computer.cpu} ${computer.memory} ${computer.gpu} ${computer.ssd}</div>`);
+</script>
+
+
+  
+</body>
+</html>
