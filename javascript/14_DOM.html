@@ -472,7 +472,7 @@ watch();
 </style>
 <script>
   /*
-    displayDday() 함수
+    changeImage() 함수
     1. 기능
       1) 5초마다 screen-saver 의 배경 이미지를 변경하는 함수
       2) 배경 이미지는 animal1.jpg ~ animal10.jpg 중 하나를 사용함
@@ -483,6 +483,21 @@ watch();
     4. Hint
       1 ~ 10 사이의 정수 난수를 구하는 getRandomIntInclusive() 함수를 함께 사용
   */
+
+  //getRandomIntInclusive 함수 : 주어진 두 정수 사이의 랜덤한 정수를 반환하는 함수
+
+  const getRandomIntInclusive = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  //changImage 
+  const changeImage = () => {
+    const screenSaver = document.getElementById('screen-saver');
+    setInterval(() => {
+      screenSaver.style.backgroundImage = `url(../assets/images/animal${getRandomIntInclusive(1, 10)}.jpg)`;
+    }, 5000);
+  }
+  //setInterval 은 특정 시간 간격으로 지정한 함수를 한복 실행하는 메소드
+  changeImage();
 
 </script>
 <hr>
@@ -539,7 +554,22 @@ watch();
         (2) opacity          : 0 ~ 1 사이 실수 값을 가짐
       2) 임의의 rgba(red, green, blue, opacity) 색상 함수를 만들어 반환하는 getRandomRgba() 함수를 만들어서 사용
   */
+ // min <= random < min 
+  const getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
 
+  const imageCover = () => {
+    const cover = document.getElementById('cover');
+    setInterval(() => {
+      cover.style.backgroundColor = 'rgba(' + 
+                                      getRandomInt(0, 256) + ',' +
+                                      getRandomInt(0, 256) + ',' +
+                                      getRandomInt(0, 256) + ',' +
+                                      Math.random() + ')';
+    }, 2000);
+  }
+  imageCover();
 </script>
 <hr>
 
@@ -564,11 +594,11 @@ watch();
       없음
   */
   const getMovies = () => {
-    const movies = {
+    const movies = { //객체
       year: 2023,
       genre: 'action',
-      items: [
-        {
+      items: [ //배열
+        { //객체
           no: '20235034',
           thumbnail: 'https://www.kobis.or.kr/common/mast/movie/2023/11/thumb_x192/thn_65a860f7dfb04c449f4a0f0d3207edee.jpg',
           title: '더 마블스',
@@ -588,9 +618,18 @@ watch();
         }
       ]
     }
-
+    let str = '';
+    movies.items.forEach((movie) => {
+      str += '<tr>';       /*'<tr>....</tr>'*/
+      str += '<td>' + movie.no + '</td>';
+      str += '<td><img src="' + movie.thumbnail + '"width="50px"></td>';
+      str += '<td>' + movie.title + '</td>';
+      str += '<td>' + movie.director + '</td>';
+      str+= '</tr>';
+    })
+    document.getElementById('movies').innerHTML = str;
   }
-  
+  getMovies();
 </script>
 <hr>
 

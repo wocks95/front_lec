@@ -20,7 +20,8 @@
 <!--
     이벤트 핸들러 (Event Handler)
     1. 이벤트에 반응하기 위해서는 이벤트가 발생했을 때 동작할 함수(Function)가 필요하다.
-    2. 이벤트가 발생했을 때 동작하는 함수를 이벤트 핸들러(Event Handler) 또는 이벤트 리스너(Event Listener) 라고 한다.
+    2. 이벤트가 발생했을 때 동작하는 함수를 이벤트 핸들러(Event Handler) 
+       또는 이벤트 리스너(Event Listener) 라고 한다.
       1) 이벤트 핸들러 : 이벤트가 발생하면 실행되는 코드
       2) 이벤트 리스너 : 이벤트가 발생했는지 체크
     3. 이벤트 핸들러가 동작할 때는 발생한 이벤트에 대한 각종 정보가 담긴 "이벤트 객체(Event Object)"가 인자로 자동 전달된다.
@@ -36,13 +37,14 @@
     2. 발생한 이벤트에 관한 상세 정보(이벤트 종류, 이벤트 대상 등)가 저장되어 있다.
     3. 이벤트 핸들러의 매개변수로 이벤트 객체를 선언하고 사용한다.
     4. 관례적으로 이벤트 객체의 이름은 "event" 또는 "evt" 를 사용하는 것이 좋다.
+    예외) "e(excetion)" not recommend 예외로 많이 쓰이기 때문에 안 사용하는걸로...!
     5. 주요 인스턴스 속성
       1) type
         (1) 이벤트의 종류를 의미한다.
         (2) 마우스 이벤트  : click, mouseover, mouseout, mousemove, mousedown, mouseup
-        (3) 폼 요소 이벤트 : submit, focus
+        (3) 폼 요소 이벤트 : submit, focus(입력란을 클릭했을 때)
         (4) 키보드 이벤트  : keydown, keypress, keyup
-        (5) 포커스 이벤트  : focus, blur
+        (5) 포커스 이벤트  : focus, blur(요소가 포커스를 잃었을 때 발생)
       2) target
         (1) 이벤트가 발생한 가장 안쪽의 요소를 의미한다.
         (2) 실제 이벤트가 시작된 지점을 의미한다.
@@ -58,17 +60,17 @@
 
 <!--
     고전 이벤트 모델
-    1. 이벤트 할당을 위해서 이벤트 핸들러 프로퍼티(Event Handler Property)를 활용하는 방법이다.
+    1. 이벤트 할당을 위해서 이벤트 핸들러 프로퍼티(Event Handler Property, 속성)를 활용하는 방법이다.
     2. 이벤트 종류 앞에 "on" 키워드를 붙이면 이벤트 핸들러 프로퍼티가 완성된다.
       예) onclick, onkeydown, onsubmit, onfocus 등
-    3. 하나의 이벤트에 하나의 이벤트 리스너를 할당할 수 있다.
+    3. 하나의 이벤트에 하나의 이벤트 리스너(마지막에 등록한 이벤트 리스너만 동작한다.)를 할당할 수 있다.
     4. 이벤트 할당 방식 예시
       1) 익명 함수
         const button = document.getElementById('button');
         button.onclick = function(event){
 
         }
-      2) 화살표 함수
+      2) ★화살표 함수
         const button = document.getElementById('button');
         button.onclick = (event) => {
 
@@ -78,17 +80,69 @@
         function eventHandler(){
 
         }
-        button.onclick = eventHandler;
+        button.onclick = eventHandler; << (); 하지말 것, 다른 곳의 함수 뒤에 ()하는게 맞지만 기명 함수는 아님
 -->
+<h4>고전 이벤트 모델</h4>
+<div>
+  <div id="box1">box1</div>
+  <div><button type="button" id="btn1">btn1</button></div> <!--DOM 객체, JS에서 event.target임-->
+</div>
+<div>
+  <div id="box3">box3</div>
+  <div><button type="button" id="btn3">btn3</button></div> 
+</div>
+<script>
+  /* 고전 이벤트 모델 동작 확인 */
+  const box1 = document.getElementById('box1');
+  const btn1 = document.getElementById('btn1');
 
+  // 이벤트 종류 : type 속성, click
+  // 이벤트 속성 : onclick
+  // 이벤트 대상 : target 속성, btn1
+  // 이벤트 리스너 (이벤트 핸들러) : function(event) { }
+  // 이벤트 객체 : 이벤트 리스너의 매개변수 event
+  btn1.onclick = function(event) {
+    box1.textContent = '이벤트 종류 : ' + event.type;
+    box1.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+  }
+  /* 이벤트 리스너 등록 확인 */
+  const box3 = document.getElementById('box3');
+  const btn3 = document.getElementById('btn3');
+   function do1(event) {
+    box3.textContent += '이벤트 종류 : ' +event.type;
+  }
+   function do2(event) {
+    box3.textContent += '이벤트 대상 : ' +event.target.textContent;
+  }                                // function(event) < 이벤트가 발생하면 브라우저에서 받아서 쓰는 곳
+  btn3.onclick = function(event) { // 이벤트 리스너로 선언할 수 있는 function (event) {} 이다. 
+                                   // 다른 event는 아니기에 동작하기 위해 모아서 호출한 것. 
+    do1(event);
+    do2(event);
+  }
+</script>
+<hr/>
+<h4>고전 이벤트 모델(연습)</h4>
+<div>
+  <div id="box2">box2</div>
+  <div><button type="button" id="btn2">btn2</button></div>
+</div>
+<script>
+  const box2 = document.getElementById('box2');
+  const btn2 = document.getElementById('btn2');
+  btn2.onclick = function(evt) {
+    box2.textContent = '이벤트 종류 : ' +event.type;
+    box2.textContent += ', 이벤트 대상 : ' +event.target.textContent; 
+  }
+
+</script>
 <!--
     표준 이벤트 모델
     1. EventTarget 인터페이스의 addEventListener() 메소드를 호출하는 방식이다.
     2. addEventListener 구문
-      1) addEventListener(type, listener)
+      1) addEventListener(type, listener) type : 종류, Listener : 이벤트 리스너
       2) addEventListener(type, listener, options)
       3) addEventListener(type, listener, useCapture)
-    3. 하나의 이벤트에 여러 개의 이벤트 리스너를 할당할 수 있다.
+    3. ★하나의 이벤트에 여러 개의 이벤트 리스너를 할당할 수 있다.
     4. 이벤트 할당 방식 예시
       1) 익명 함수
         const button = document.getElementById('button');
@@ -107,10 +161,27 @@
         }
         button.addEventListener('click', eventHandler);
 -->
+<h4>표준 이벤트 모델</h4>
+<div>
+  <div id="box4">box4</div>
+  <div><button type="button" id="btn4">btn4</button></div>
+</div>
+<script>
+  /* 표준 이벤트 모델 동작 확인 */
+  const box4 = document.getElementById('box4');
+  const btn4 = document.getElementById('btn4');
 
+  btn4.addEventListener('click', function(event) {
+    box4.textContent += '이벤트 타입 : ' + event.type;
+  })
+  btn4.addEventListener('click', function(event) {
+    box4.textContent += '이벤트 대상 : ' + event.target.textContent;
+  })
+</script>
+<hr/>
 <!--
     인라인 이벤트 모델
-    1. DOM 객체에 직접 이벤트 핸들러 속성(Event Handler Attribute) 등록하고 이벤트 핸들러를 호출하는 방식이다.
+    1. DOM 객체에 직접 이벤트 핸들러 속성(Event Handler Attribute =태그) 등록하고 이벤트 핸들러를 호출하는 방식이다.
     2. 이벤트 핸들러를 만들 때 주로 기명 함수를 사용한다.
     3. 이벤트 할당 방식 예시
       <button type="button" onclick="inline()">
@@ -118,7 +189,20 @@
 
       }
 -->
+<h4>인라인 이벤트 모델</h4>
+<div>
+  <div id="box5">box5</div>
+  <div><button type="button" id="btn5" onclick="fnInline(event)">btn5</button></div>
+</div>
+<script>
 
+  const box5 = document.getElementById('box5');
+
+  function fnInline(event) {
+   box5.textContent = '이벤트 종류 : ' + event.type;
+  }
+
+</script>
 <!--
     이벤트 전파
     1. 이벤트 버블링(Event Bubbling)이라고 한다.
