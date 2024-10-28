@@ -134,7 +134,7 @@
 <div id="box3" class="primary-box">box3</div>
 <script>
   /* HTMLElement 객체 반환 */
-  const box1 = document.getElementById('box1'); //선택자가 하나일경우
+  const box1 = document.getElementById('box1'); //선택자가 하나일경우, 주로 자주 사용되는듯하다.
   console.log(box1);
   const box2 = document.querySelector('#box2'); //선택자가 하나일경우
   console.log(box2);
@@ -170,6 +170,7 @@
 <script>
   const fourSeasons = document.getElementById('four-seasons');
   fourSeasons.innerHTML = '<li>봄</li><li>여름</li><li>가을</li><li>겨울</li>';
+  fourSeasons.style.listStyleType = 'none';
 </script>
 <hr/>
 
@@ -178,7 +179,7 @@
     1. HTMLElement 객체의 style 속성을 이용한다.
     2. inline 방식으로 CSS 가 처리된다. (style 속성을 주면 기존 CSS는 덮어쓰기된다.)
     3. CSS 속성 적용 방식
-      1) 마침표 : CSS 속성 이름을 Dash Case 에서 Camel Case 로 바꿔서 사용한다.
+      1) 마침표 : CSS 속성 이름을 Dash Case(-) 에서 Camel Case 로 바꿔서 사용한다.
       2) 대괄호 : CSS 속성 이름을 문자열 형식으로 그대로 사용한다.
     4. 작성 예시
       1) 마침표 : HTMLElement.style.fontSize = '12px';

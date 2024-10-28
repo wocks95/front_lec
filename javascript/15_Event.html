@@ -100,7 +100,7 @@
   // 이벤트 속성 : onclick
   // 이벤트 대상 : target 속성, btn1
   // 이벤트 리스너 (이벤트 핸들러) : function(event) { }
-  // 이벤트 객체 : 이벤트 리스너의 매개변수 event
+  // ★이벤트 객체 : 이벤트 리스너(function() {})의 매개변수 event
   btn1.onclick = function(event) {
     box1.textContent = '이벤트 종류 : ' + event.type;
     box1.textContent += ', 이벤트 대상 : ' + event.target.textContent;
@@ -167,7 +167,7 @@
   <div><button type="button" id="btn4">btn4</button></div>
 </div>
 <script>
-  /* 표준 이벤트 모델 동작 확인 */
+  /* 표준 이벤트 모델 동작 확인  +=를 사용하게 되면 계속 반복적으로 나옴 */
   const box4 = document.getElementById('box4');
   const btn4 = document.getElementById('btn4');
 
