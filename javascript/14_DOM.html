@@ -17,7 +17,7 @@
 <!--
     ■■■ HTML ■■■                              ■■■ DOM tree ■■■
 
-    <html lang="ko">                              Document
+    <html lang="ko">                              Document(문서 전체= 객체)
     <head>                                           ↓
       <title>My Document</title>                    HTML
     </head>                                     ↙          ↘
@@ -35,8 +35,10 @@
                             EventTarget
                                  ↑
                                 Node
+                            (firstchild)
                   ┌--------------┼------------┐
                 Text          Element       Comment
+                            (classname, 자식은 부모의 것을 사용할수 있다. = 상속)
                                  ↑
                             HTMLElement
         ┌------------------------┼------------------------┐
@@ -45,7 +47,7 @@
 -->
 
 <!--
-    Element / Node
+    Element / Node (= 태그)
 
     1. DOM 계층 구조를 구성하는 가장 기본적인 객체이다.
     2. 주요 인스턴스 속성(property)
@@ -72,7 +74,7 @@
       1) 주어진 문자열과 일치하는 id 속성을 가진 요소를 Element 객체로 반환한다.
       2) 없으면 null 을 반환한다.
       
-    2. Document.getElementsByClassName(class)
+    2. Document.getElementsByClassName(class, HTMLCollection 객체 반환)
       1) 주어진 문자열과 일치하는 class 속성을 가진 모든 요소를 HTMLCollection 객체로 반환한다.
       2) 없으면 null 을 반환한다.
       3) 반환된 HTMLCollection 객체는 변경 사항이 실시간으로 반영되는 Live HTMLCollection 객체이다.
@@ -82,7 +84,7 @@
         (3) HTMLCollection.namedItem(name) : 주어진 id 속성 또는 name 속성을 가진 Node를 반환
         (4) Array.prototype.forEach() 와 같은 Array 객체의 메소드는 사용할 수 없음
     
-    3. Document.getElementsByTagName(tag)
+    3. Document.getElementsByTagName(tag, HTMLCollection 객체 반환)
       1) 주어진 문자열과 일치하는 모든 태그를 가진 HTMLCollection 객체를 반환한다.
       2) 없으면 null 을 반환한다.
 
@@ -90,7 +92,7 @@
       1) 제공한 선택자와 일치하는 문서 내 첫 번째 Element 객체를 반환한다.
       2) 없으면 null 을 반환한다.
 
-    5. Document.querySelectorAll(selectors)
+    5. Document.querySelectorAll(selectors, NodeList 객체 반환)
       1) 제공한 선택자와 일치하는 문서 내 모든 요소를 가진 NodeList 객체를 반환한다.
       2) 반환된 NodeList 객체는 변경 사항이 실시간으로 반영되지 않는 Static NodeList 객체이다.
       3) 없으면 null 을 반환한다.
@@ -126,6 +128,31 @@
     forEach()       | No                       | Yes 
     ----------------------------------------------------------------------------------
 -->
+<h4>DOM 객체 반환 메소드</h4>
+<div id="box1" class="primary-box">box1</div>
+<div id="box2" class="primary-box">box2</div>
+<div id="box3" class="primary-box">box3</div>
+<script>
+  /* HTMLElement 객체 반환 */
+  const box1 = document.getElementById('box1'); //선택자가 하나일경우
+  console.log(box1);
+  const box2 = document.querySelector('#box2'); //선택자가 하나일경우
+  console.log(box2);
+  const boxes = document.querySelector('.primary-box'); 
+    // 동일한 선택자가 여럿 있는 경우 첫 번째 요소만 반환된다.
+  console.log(boxes);
+
+  /* HTMLCollection 객체 반환 */
+  const dives = document.getElementsByTagName('div');
+  console.log(dives);
+  const primaryBox = document.getElementsByClassName('primary-box');
+  console.log(primaryBox);
+
+  /* NodeList 객체 반환 */
+  const primaryBoxes = document.querySelectorAll('.primary-box');
+  console.log(primaryBoxes);
+
+</script>
 
 <!--
     1. 기존 DOM 객체 변경
@@ -136,6 +163,15 @@
       1) 요소   : Element.innerHTML += 'HTML';
       2) 텍스트 : Node.textContent += 'TEXT';
 -->
+<h4> DOM 객체 조작하기</h4> 
+<ul id="four-seasons">
+  <li>이 곳에 사계절을 넣으세요</li>
+</ul>
+<script>
+  const fourSeasons = document.getElementById('four-seasons');
+  fourSeasons.innerHTML = '<li>봄</li><li>여름</li><li>가을</li><li>겨울</li>';
+</script>
+<hr/>
 
 <!--
     CSS 적용
@@ -148,7 +184,18 @@
       1) 마침표 : HTMLElement.style.fontSize = '12px';
       2) 대괄호 : HTMLElement.style['font-size'] = '12px';
 -->
-
+<h4>CSS 적용하기</h4>
+<div>
+  <a id="google-link" href="https://www.google.com/">Google</a>
+</div>
+<script>
+  const googlelink = document.getElementById('google-link');
+  googlelink.style.color = '#080808';
+  googlelink.style.fontSize = '24px';
+  googlelink.style['font-weight'] = '700';
+  googlelink.style['text-decoration'] = 'none';
+</script>
+<hr/>
 <!--
     HTML Attribute
     1. HTML 태그에 명시된 속성을 의미한다.
@@ -160,7 +207,27 @@
       2) 수정하기 : setAttribute(attribute, value)
       3) 삭제하기 : removeAttribute(attribute)
 -->
+<h4>Attribute 속성</h4>
+<div>
+  <!-- type = 'text'는 생략이 가능한 디폴트 속성 -->
+  <input name="id" id="id" class="inp" readonly> 
+</div>
+<script>
+  const id = document.getElementById('id');
+  console.log('type     : ', id.getAttribute('type')); //type 속성이 없으므로 null
+  console.log('name     : ', id.getAttribute('name'));
+  console.log('id       : ', id.getAttribute('id'));
+  console.log('class    : ', id.getAttribute('class'));
+  console.log('readonly : ', id.getAttribute('readonly')); // readonly 속성의 값이 없으므로 빈 문자열
 
+  id.setAttribute('name', 'user-id'); //name="id" -> name="user-id"
+  id.setAttribute('value', 'admin') //value='admin'
+
+  id.removeAttribute('readonly');
+  id.removeAttribute('value');
+ 
+</script>
+<hr/>
 <!--
     DOM property
     1. DOM 객체가 가지고 있는 속성이다.
@@ -168,6 +235,31 @@
       1) 객체.property
       2) 객체['property']
 -->
+<h4>Property 속성</h4>
+<div>
+  <!-- type = 'text'는 생략이 가능한 디폴트 속성 -->
+  <input name="pw" id="pw" class="inp" readonly> 
+</div>
+<script>
+  //객체 pw 가 가진 속성(Property)은 태그 속성(Attribute) 보다 우선 연습한다.
+  const pw = document.getElementById('pw');
+
+  console.log('type     : ', pw.type); //pw['type']
+  console.log('name     : ', pw.name); //pw['name']
+  console.log('id       : ', pw.id);   //pw['id']
+  console.log('class    : ', pw.className); //pw['class']
+  console.log('readOnly : ', pw.readOnly);  //pw['readOnly']
+
+  //property 수정
+  pw.name = 'user-pw';
+  pw.type = 'password';
+  pw.value = '1234';
+  
+  //DOM 객체 속성은 삭제하지 않는다.
+  delete pw.reanOnly; //동작 안함
+</script>
+<hr/>
+
 
 <!--
     HTML Attribute vs DOM Property
@@ -205,11 +297,34 @@
     1. 기능
       국어, 영어, 수학 점수를 읽은 뒤 평균 점수와 학점을 출력하는 함수
     2. 인자
-      국어, 영어, 수학 점수를 읽은 뒤 배열로 만들어서 반환하는 getScores() 함수
+      국어, 영어, 수학 점수를 읽은 뒤 배열로 만들어서 반환하는 getScores() 함수 호출 결과
     3. 반환
       없음
   */
+  const getScores = () => {
+    return [
+      Number(document.getElementById('kor').textContent),
+      Number(document.getElementById('eng').textContent),
+      Number(document.getElementById('math').textContent),
+    ]
+  };
+  
+  const printScores = (ary) => {
+    const [kor, eng, math] = ary; //kor = ary[0], eng = ary[1], math = ary[2]
+    const average = (kor + eng + math) / 3;
+    let grade;
+    if(average >= 90)   grade = 'A';
+    else if(average>=80) grade = 'B';
+    else if(average>=70) grade = 'C';
+    else if(average>=60) grade = 'D';
+    else                 grade = 'F';
+    document.getElementById('average').textContent = average;
+    document.getElementById('grade').innerHTML = '<strong>'+ grade + '</strong>';
+  };
+  printScores(getScores());
 
+
+  
 </script>
 <hr>
 
@@ -233,7 +348,15 @@
     3. 반환
       없음
   */
-
+const changeLink = (image, link) => {
+  /* Attribue 수정 */
+  // document.querySelector('#logo-wrap > a').setAttribute('href', link);
+  // document.querySelector('#logo-wrap img').setAttribute('src', image);
+  /* property 수정 */
+  document.querySelector('#logo-wrap > a').href = link;
+  document.querySelector('#logo-wrap img').src = image;
+}
+changeLink('../assets/images/logo_naver.png', 'https://www.naver.com/');
 </script>
 <hr>
 
@@ -265,13 +388,44 @@
     1. 기능
       1) 현재 시간을 "년-월-일 시:분:초" 형식으로 1초마다 한 번씩 화면에 출력하는 함수
       2) "년도"는 4자리로 표시하고 "월,일,시,분,초"는 2자리로 표시
-      3) 매 분마다 50초 이상의 시간은 color: red 적용
+      3) 매 분마다 50초 이상의 시간은 color: red 적용 (클래스 warning 적용)
     2. 인자
       없음
     3. 반환
       없음
   */
-
+  const watch = () => {
+    const watch = document.getElementById('watch');
+    const spanYear = document.getElementById('year');
+    const spanMonth = document.getElementById('month');
+    const spanDay = document.getElementById('day');
+    const spanHour = document.getElementById('hour');
+    const spanMinute = document.getElementById('minute');
+    const spanSecond = document.getElementById('second');
+    setInterval(() => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      spanYear.textContent = year;
+      spanMonth.textContent = month.toString().padStart(2, '0');
+      spanDay.textContent = day.toString().padStart(2, '0');
+      spanHour.textContent = hour.toString().padStart(2, '0');
+      spanMinute.textContent = minute.toString().padStart(2, '0');
+      spanSecond.textContent = second.toString().padStart(2, '0');
+      if(second >= 50) {
+        watch.setAttribute('class' , 'warning');
+        // watch.className = 'warning';
+      } else {
+        watch.setAttribute('class', 'normal');
+        // watch.className = 'normal';
+      }
+    }, 1000);
+  }
+watch();
 </script>
 <hr>
 
