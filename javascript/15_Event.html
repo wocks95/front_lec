@@ -131,8 +131,11 @@
   const btn2 = document.getElementById('btn2');
   btn2.onclick = function(evt) {
     box2.textContent = '이벤트 종류 : ' +event.type;
-    box2.textContent += ', 이벤트 대상 : ' +event.target.textContent; 
+    box2.textContent += ', 이벤트 대상 : ' +event.target.textContent;
+    box2.style.fontWeight = '700';
   }
+  box2.style.color = '#808080'; 
+ 
 
 </script>
 <!--
