@@ -433,9 +433,19 @@
 <script>
   // 버튼을 누를때마다 ON/OFF 버튼 텍스트와 lightOn.png/lightOff.png 이미지를 변환하도록 구현하시오.
   const switchBtn = document.getElementById('switch-btn');
-  
+  const light = document.getElementById('light');
+
   switchBtn.addEventListener('click', function(event) {
-    alert(event.currentTarget.dataset.power); // this로 하면 나중에 수많은 버튼을 코딩할때 다 함께 묶을 수 가 있음
+   const btn = event.currentTarget; // this로 하면 나중에 수많은 버튼을 코딩할때 다 함께 묶을 수 가 있음
+   if(btn.textContent === 'ON') { //if(btn.dataset.power === 'on')
+    light.className = 'light-off';
+    btn.dataset.power = 'off';
+    btn.textContent = 'OFF';
+   } else { 
+    light.className = 'light-on';
+    btn.dataset.power = 'on';
+    btn.textContent = 'ON';
+   }
   })
 </script>
 <hr>
@@ -450,11 +460,27 @@
   }
 </style>
 <div>
-  <input type="password" id="pw"><span id="eye" class="eye"><i class="fa-regular fa-eye-slash"></i></span>
+  <input type="password" id="pw">
+  <span id="eye" class="eye">
+    <i class="fa-regular fa-eye-slash">
+    </i>
+  </span>
 </div>
 <script>
   // 아이콘을 클릭할때마다 입력한 비밀번호를 보여주거나 숨기도록 구현하시오.
 
+  const icon = document.querySelector('#eye > i');
+  const pw = document.getElementById('pw');
+ 
+  icon.addEventListener('click', function(event) { // class 속성에 fa-eye-slash 가 포함되어 있으면
+    if(icon.className.indexOf('fa-eye-slash') !== -1) {
+      icon.className = 'fa-regular fa-eye';
+      pw.type = 'text';         
+    } else {
+      icon.className = 'fa-regular fa-eye-slash';
+      pw.type = 'password';
+    }
+  })
 </script>
 <hr>
 
@@ -517,9 +543,6 @@
     width: 576px;
     height: 314px;
     margin: 10px auto;
-  }
-  .thumbnail-wrap div {
-    box-sizing: border-box;
   }
   .thumbnail-wrap div {
     box-sizing: border-box;
@@ -592,7 +615,25 @@
 </style>
 <script>
   // 전체 선택 체크 상자와 개별 선택 체크 상자가 상호 연동되도록 구현하시오.
+  const chkAll = document.getElementById('chk-all');
+  const chkEach = document.getElementsByClassName('chk-each');
 
+  // 전체 선택
+  chkAll.addEventListener('click', function(event) {
+    for(let i = 0; i < chkEach.length; i++) {
+      chkEach[i].checked = chkAll.checked; 
+    } 
+  })
+
+  // 개별 선택
+  for(let i = 0; i < chkEach.length; i++) {
+    chkEach[i].addEventListener('click', function(event) {
+      let total = 0;
+      for(let j = 0; j < chkEach.length; j++)
+        total += chkEach[j].checked;    // true는 1로 누적되고, false는 0으로 누적된다. 
+      chkAll.checked = total === chkEach.length;
+    })
+  }
 </script>
 <hr>
 
