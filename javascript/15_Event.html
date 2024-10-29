@@ -645,8 +645,10 @@
 </style>
 <script>
   // 전체 선택 체크 상자와 개별 선택 체크 상자가 상호 연동되도록 구현하시오.
+  // const chkAll = document.getElementById('chk-all');
+  // const chkEach = document.getElementsByClassName('chk-each');
   const chkAll = document.getElementById('chk-all');
-  const chkEach = document.getElementsByClassName('chk-each');
+  const chakEach = document.getElementByClassName('chk-each');
 
   // 전체 선택
   chkAll.addEventListener('click', function(event) {
@@ -654,7 +656,6 @@
       chkEach[i].checked = chkAll.checked; 
     } 
   })
-
   // 개별 선택
   for(let i = 0; i < chkEach.length; i++) {
     chkEach[i].addEventListener('click', function(event) {
