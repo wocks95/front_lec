@@ -352,9 +352,28 @@
     1. 어떤 DOM 객체는 특정 이벤트를 이미 가지고 있다.
     2. 주요 디폴트 이벤트
       1) <a> 태그는 click 하면 href 속성으로 이동한다.
-      2) <form> 태그는 submit 하면 action 속성으로 입력 폼 요소의 데이터를 전송하고 입력 폼 요소의 값을 초기화한다.
+      2) <form> 태그는 submit(button의 서브밋이 아닌 form 태그 전체를 서브밋했다는 뜻) 하면 action 속성으로 입력 폼 요소의 데이터를 전송하고 입력 폼 요소의 값을 초기화한다.
     3. 이벤트 객체의 preventDefault() 메소드를 호출하면 디폴트 이벤트 동작을 막을 수 있다.
 -->
+<h4>디폴트 이벤트</h4>
+<div>
+  <a href="https://www.naver.com/" target="_blank" id="naver-link">일회용 Naver 링크</a>
+</div>
+<script>
+
+  const naverLink = document.getElementById('naver-link');
+
+  let visited = false;
+  naverLink.addEventListener('click', function(event) {
+    if(visited) {
+      alert('두 번은 못 갑니다.');
+      event.preventDefault(); // <a> 태그 동작 막기
+      return;                 // 이벤트 핸들러 (함수) 실행 종료
+    }
+    visited = true;
+  })
+</script>
+
 
 
 
@@ -369,7 +388,23 @@
 </div>
 <script>
   // 입력된 아이디와 비밀번호가 없으면 로그인을 막는 코드를 작성하시오.
-
+  const loginForm = document.getElementById('login-form');
+  const id = document.getElementById('id');
+  const password = document.getElementById('password');
+  
+  loginForm.addEventListener('submit', function(event) { /*'submit'을 이벤트 동작하는 것*/
+    if(id.value === '' ) {
+      alert('아이디를 입력하세요');
+      id.focus(); //아이디 입력란을 자동으로 선택해줌
+      event.preventDefault(); // 서브밋 취소
+      return;                 // 이벤트 핸들러 종료
+    } else if(password.value === '') {
+      alert('비밀번호를 입력하세요');
+      password.focus(); //비밀번호 입력란을 자동으로 선택해줌
+      event.preventDefault(); // 서브밋 취소
+      return;                 // 이벤트 핸들러 종료
+    }
+  })
 </script>
 <hr>
 
@@ -397,7 +432,11 @@
 </style>
 <script>
   // 버튼을 누를때마다 ON/OFF 버튼 텍스트와 lightOn.png/lightOff.png 이미지를 변환하도록 구현하시오.
-
+  const switchBtn = document.getElementById('switch-btn');
+  
+  switchBtn.addEventListener('click', function(event) {
+    alert(event.currentTarget.dataset.power); // this로 하면 나중에 수많은 버튼을 코딩할때 다 함께 묶을 수 가 있음
+  })
 </script>
 <hr>
 
