@@ -135,13 +135,31 @@ const verifyMobile = () => {
   } else {
   alert('휴대전화 아니다.');
   }
-
 }
 const mobileBtn = document.getElementById('mobile-btn');
 mobileBtn.addEventListener('click', verifyMobile);
+
+//재연습
 </script>
 <hr>
-
+<div>
+  <input type="text" id="phone">
+  <button type="button" id="phone-btn">휴대전화검사1</button>
+</div>
+<script>
+  const verifyPhone = () => {
+    const phone = document.getElementById('phone');
+    const regPhone = /^010(-?[0-9]{4}){2}$/;
+    if(regPhone.test(phone.value)) {
+      alert('phone이 맞다.');
+    } else {
+      alert('phone이 아니다.');
+    }
+  }
+  const phoneBtn = document.getElementById('phone-btn');
+  phoneBtn.addEventListener('click', verifyPhone);
+</script>
+<hr/>
 
 
 <h4>아이디 검사하기 : 5-20자, 소문자/숫자/특수문자(-,_), 첫글자 소문자</h4>
@@ -208,10 +226,19 @@ document.getElementById('id-btn').addEventListener('click', verifyId);
 <h4>이메일 : 아이디@호스트.도메인 / 아이디@호스트.도메인.도메인 (호스트 : 1글자 이상 / 도메인 : 2 ~ 6글자)</h4>
 <div>
   <input type="text" id="email">
-  <button id="email-btn">이메일검사</button>
+  <button type="button" id="email-btn">이메일검사</button>
 </div>
 <script>
-
+  const verifyEmail = () => {
+    const email = document.getElementById('email');
+    const regEmail = /^[A-Za-z0-9-_]+@[A-Za-z0-9]+([.][A-Za-z]{2,6}){1,2}$/;  /*(){1,2} 도메인 안에 1번 아니면 2번이라는 뜻 */
+    if(regEmail.test(email.value)) {
+      alert('이메일 맞다');
+    } else {
+      alert('이메일 아니다.');
+    }
+  }
+  document.getElementById('email-btn').addEventListener('click',verifyEmail);
 </script>
 <hr>
 
@@ -230,8 +257,46 @@ document.getElementById('id-btn').addEventListener('click', verifyId);
   </div>
 </div>
 <script>
+
   // 비밀번호를 입력할때마다 입력된 비밀번호의 정규식 검사를 수행하고 그 결과를 화면에 나타내시오.
+  const pwd = document.getElementById('pwd');
+  const pwd2 = document.getElementById('pwd2');
+
+  const verifyPwd = () => {
+    const spanPwd = document.getElementById('pwd-msg');
+    const passCount = /[A-Z]/.test(pwd.value) /* 대문자가 포함되면 true */
+                    + /[a-z]/.test(pwd.value) /* 소문자가 포함되면 true */
+                    + /[0-9]/.test(pwd.value) /* 숫자가 포함되면 true */
+                    + /[^A-Za-z0-9]/.test(pwd.value) /* 특수문자가 포함되면 true */
+                /*  + /[^A-Za-z0-9]/.test(pw.value) 대문자/소문자/숫자를 제외한 문자가 포함되면 true */
+    if(passCount >=3 && pwd.value.length >=5 && pwd.value.length <= 20) {
+      spanPwd.textContent = '사용 가능한 비밀번호입니다.';
+      spanPwd.style.color = 'green';
+      spanPwd.style.fontSize = '12px';
+      
+    } else {
+      spanPwd.textContent = '사용할 수 없는 비밀번호입니다.';
+      spanPwd.style.color = 'red';
+      spanPwd.style.fontSize = '12px';
+    }
+  }
   // 비밀번호 확인을 입력할때마다 입력된 비밀번호와 같은지 검사를 수행하고 그 결과를 화면에 나타내시오.
+  const confirmPwd = () => {
+    const spanPwd2 = document.getElementById('pwd-msg2');
+    if(pwd.value === pwd2.value) {
+      spanPwd2.textContent = ' 비밀번호가 일치합니다.';
+      spanPwd2.style.color = 'green';
+      spanPwd2.style.fontSize = '12px';
+      
+    } else {
+      spanPwd2.textContent = '비밀번호가 일치하지 않습니다.';
+      spanPwd2.style.color = 'red';
+      spanPwd2.style.fontSize = '12px';
+    }
+  }
+  pwd.addEventListener('keyup', verifyPwd);
+  pwd2.addEventListener('keyup', confirmPwd);
+  
   
 </script>
 <hr>
