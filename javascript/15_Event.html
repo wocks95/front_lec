@@ -673,6 +673,7 @@
 <!-- 문제7. 검색 화면 구성하기 -->
 <h4>검색 화면 구성하기</h4>
 <div style="margin-bottom: 20px;">
+  <!-- 인라인 이벤트 모델에서 인자로 this를 전달하면 이벤트 핸들러는 해당 this 값을 이벤트 대상(target)으로 사용할 수 있다. -->
   <input type="radio" name="category" id="title" onclick="displaySearchBox(this)"><label for="title">제목</label>
   <input type="radio" name="category" id="date" onclick="displaySearchBox(this)"><label for="date">날짜</label> 
   <input type="radio" name="category" id="price" onclick="displaySearchBox(this)"><label for="price">가격</label>
@@ -707,7 +708,16 @@
 </style>
 <script>
   // 선택한 카테고리의 검색 화면만 화면에 나타내시오.
-
+  const displaySearchBox = (radio) => {
+    const searchBoxes = document.getElementsByClassName('search-boxes');
+    for(const searchBox of searchBoxes) { //for (const 요소 of 배열) {}
+      if(searchBox.id.startsWith(radio.id))
+        searchBox.style.display= 'block';
+      else 
+        searchBox.style.display = 'none';
+    }  
+  }
+  
 </script>
 <hr>
 
@@ -775,6 +785,30 @@
 <script>
   // 계산기가 동작할 수 있도록 구현하시오.
   
+  const calculate = (btn) => {
+    
+    const result = document.getElementById('result');
+    
+    if(btn.textContent === 'AC') {
+      result.value = 0;
+    } else if(btn.textContent === '←') {
+      if(result.value.length === 1) {
+        result.value = 0;
+      } else {
+        result.value = result.value.slice(0, -1);
+      } 
+    } else if(btn.textContent === '=') {
+      result.value = eval(result.value);
+    } else {
+      if(result.value === '0') {
+        result.value = btn.textContent;
+      } else {
+        result.value += btn.textContent; //모든 버튼들이 출력되는 화면에 쌓이기만 한다.
+      }
+    }
+
+
+  }
 </script>
 <hr>
 
