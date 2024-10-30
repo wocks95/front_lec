@@ -437,7 +437,7 @@
   const light = document.getElementById('light');
 
   switchBtn.addEventListener('click', function(event) {
-   const btn = event.currentTarget;  // this로 하면 수많은 버튼을 코딩할때 다 함께 묶을 수 가 있음
+   const btn = event.currentTarget;  // event 대신 this로 해도 수많은 버튼을 코딩할때 다함께 묶을 수가 있음
    if(btn.textContent === 'ON') { //if(btn.dataset.power === 'on')
     light.className = 'light-off';
     btn.dataset.power = 'off';
