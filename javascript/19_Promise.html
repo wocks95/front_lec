@@ -8,7 +8,7 @@
 <body>
 
 <!--
-    비동기 작업
+    비동기 작업(Asynchronous)
     1. 특정 코드 실행이 종료될때까지 기다리지 않고 다음 코드를 먼저 실행한다.
     2. 클라이언트가 서버로 데이터를 요청한 뒤 서버가 응답할때까지 사용자는 기다릴 필요가 없다.
     3. 콜백 함수로 비동기 처리 방식의 문제를 해결할 수 있으나 콜백 지옥(callback hell)에 빠질 수 있다.
@@ -23,6 +23,31 @@
         })
       })
 -->
+<h4>비동기 작업의 특징 이해하기</h4>
+<div>
+  <button type="button" onclick="doNotWork()">doNotWork</button>
+</div>
+<script>
+  const doNotWork = () => {
+    //1. 변수 선언하기
+    let authorName; //undefined 초기값 안줌
+
+    //2. 비동기 작업 수행하기 (Fake API로 요청해서 응답 받아오기)
+    const xhr = new XMLHttpRequest();
+    const method = 'GET';
+    const url = 'https://thetestrequest.com/authors/3';
+    xhr.open(method, url);
+    xhr.addEventListener('load', function(event) {
+      const { id, name, email, avatar, created_at, updated_at } = JSON.parse(xhr.responseText);
+      authorName = name;
+
+    })
+    xhr.send();
+    //3. 변수 확인하기
+    console.log(authorName);
+  }
+</script>
+<hr/>
 
 <!--
     Promise
@@ -36,10 +61,10 @@
     Promise 상태
 
     1. pending   : 대기 (Promise 실행 전 초기상태)
-    2. fulfilled : 이행 (비동기 작업의 성공)
-    3. rejected  : 거부 (비동기 작업의 실패)
+    2. ★fulfilled : 이행 (비동기 작업의 성공)
+    3. ★rejected  : 거부 (비동기 작업의 실패)
       
-                  [fulfilled] → .then(onFulfillment)
+                  [fulfilled] → .then(메소드, onFulfillment)
        [pending]  ↗                                   ↘
         Promise                                         return Promise ---┐
           ↑       ↘                                   ↗                   |
@@ -98,8 +123,40 @@
                 reject(error);
               }
             }).then((response) => { response 처리 }, (error) => { error 처리 })
-
-    2. Promise.prototype.catch()
+-->
+<h4>Promise 메소드 연습</h4>
+<div>
+  <button type="button" onclick="hiWork()">hiWork</button>
+</div>
+<script>
+  const hiWork = () => {
+    const objPromise = new Promise((resolve, reject) => {
+      const xhr =  new XMLHttpRequest();
+      const method = 'GET';
+      const url = 'https://thetestrequest.com/authors/5';
+      xhr.open(method,url);
+      xhr.addEventListener('load', function(event) {
+        if(xhr.status >= 200 && xhr.status < 300) {
+          resolve(JSON.parse(xhr.responseText));
+        } else {
+          reject(xhr.status);
+        }
+      })
+      xhr.addEventListener('error', function(event) {
+        reject(xhr.status);
+      })
+      xhr.send();
+    })
+    objPromise
+     .then((responseData) => {
+      const { id } = responseData;
+      console.log(id);
+    }).catch((status) => {
+      console.log(status);
+    });
+  }
+</script>
+<!--    2. Promise.prototype.catch()
       1) Promise 의 거부 함수를 콜백으로 추가한다.
       2) 기본 형식
           new Promise(executor).catch(failureCallback)
@@ -113,7 +170,89 @@
           }).then((response) => { response 처리 })
             .catch((error) => { error 처리 })
 -->
+<!--
+    new Promise( (resolve, reject) => {
 
+        resolve('success');
+
+        reject('fail');
+
+    }).then(res => {
+
+        console.log(res);  // success
+
+    }).catch(res => {
+
+        console.log(res);  // fail
+
+    })
+-->
+<h4>Promise 객체 사용하기(비동기 작업의 문제 해결)</h4>
+<div>
+  <button type="button" onclick="doWork()">doWork</button>
+</div>
+<script>
+  const doWork = () => {
+    //1. 변수 선언하기
+    let authorName; //undefined 초기값 안줌
+
+    //2. Promise 객체 내부에서 비동기 작업 수행하기 (Fake API로 요청해서 응답 받아오기)
+    const objPromise = new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      const method = 'GET';
+      const url = 'https://thetestrequest.com/authors/3';
+      xhr.open(method, url);
+      //비동기 작업 성공 : resolve 함수를 호출하라!
+      xhr.addEventListener('load', function(event) {
+        resolve(JSON.parse(xhr.responseText)); // then((responseData) => {})의 responseData으로 감
+      })
+      //비동기 작업 실패 : reject 함수를 호출하라!
+      xhr.addEventListener('error', function(event) { // catch((status) => {})의 status으로 감
+        reject(xhr.status);
+      })
+      xhr.send();
+    });
+    //3. Promise 객체의 메소드 실행(then 메소드에는 resolve 함수를 만들고, catch메소드에는 reject 함수를 만든다.)
+    objPromise
+    .then(responseData => {
+      const { name } = responseData;
+      authorName = name;
+      console.log(authorName);
+    })
+    .catch(status => {
+      console.log(status);
+    });
+    
+  }
+</script>
+<hr/>
+<h4>Promise 객체 사용하기(비동기 작업의 문제 해결) 연습하기</h4>
+<div>
+  <button type="button" onclick="thisWork()">thisWork</button>
+</div>
+<script>
+  const thisWork = () => {
+    new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();  // XMLHttpRequest : 비동기 작업을 수행하는 객체
+      const method = 'GET';
+      const url = 'https://thetestrequest.com/authors/4';
+      xhr.open(method, url);
+      xhr.addEventListener('load', function(event) {  // 'load' : '성공한다면'
+        resolve(JSON.parse(xhr.responseText));
+      })
+      xhr.addEventListener('error', function(event) {
+        reject(xhr.status);
+      })
+      xhr.send();
+    }).then((responseData) => {
+      const { email } = responseData;
+      console.log(email);
+    }).catch((status) => {
+      console.log(status);
+    })
+   
+  }
+</script>
 <!--
     Promise Chaining
 

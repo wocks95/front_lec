@@ -330,8 +330,43 @@
     앨범마다 포토가 50개씩 들어있는 상황의 정보가 제공된다.
     각 앨범(albumId) 마다 50개의 포토(id) 정보가 수록되어 있다.
     albumId 는 1 ~ 100 값을 가지고 있고, id 는 1 ~ 5000 값을 가지고 있다.
+    albumId": 1,
+    "id": 1,
+    "title": "accusamus beatae ad facilis cum similique qui sunt",
+    "url": "https://via.placeholder.com/600/92c952",
+    "thumbnailUrl": "https://via.placeholder.com/150/92c952"
   */
-
+  document.getElementById('get-photo-btn').addEventListener('click', function(event) {
+    const xhr = new XMLHttpRequest();
+    const method = 'GET';
+    const url = 'https://jsonplaceholder.typicode.com/photos'
+    xhr.open(method, url);
+    
+    xhr.addEventListener('load', function(event) {
+          const albumId = Number(document.getElementById('album-id').value) || 1;
+          const responseData = JSON.parse(xhr.responseText); //resposeText는 url의 주소에 나오는 배열 전체를 뜻한다. js에서 JSON객체로 변경을 했음
+          let str = '';        
+          /*   for of 문
+                1. 배열의 요소를 자동으로 가져올 수 있다.
+                2. 형식
+                    for(요소 of 배열) {
+                        본문
+                    }     
+          */                              
+          for(const photo of responseData) {                  //for of 문이 responseData에 있는 배열의 요소{}들을 하나씩 꺼내어 photo라는 변수에서 요소로 사용된다.
+            if (photo.albumId === albumId) {                      
+              str += '<tr>'
+              str += ' <td> ' + photo.albumId + '</td>'; 
+              str += ' <td><img src="' + photo.thumbnailUrl + '"></td>';    
+              str += ' <td>' + photo.id + '</td>';   
+              str += ' <td><a href="' + photo.url+ '" target="_blank">' + photo.title + '</a></td>';   
+              str += '</tr>'; 
+            }
+          }
+          document.getElementById('photos').innerHTML = str;
+        })
+    xhr.send();
+  })
 </script>
 <hr>
 
