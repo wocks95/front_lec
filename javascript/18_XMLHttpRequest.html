@@ -31,7 +31,7 @@
           
     2. response
       1) 응답 개체 본문(response body)을 반환한다.
-      2) ArrayBuffer, Blob, Document, JavaScript Object, String 등과 같은 데이터를 포함한다.
+      2) ArrayBuffer, Blob(파일), Document, JavaScript Object(JSON), String 등과 같은 데이터를 포함한다.
 
     3. responseText
       1) 요청에 대한 응답을 텍스트(string)로 반환한다.
@@ -75,7 +75,7 @@
     3. XMLHttpRequest.open()
       1) 요청을 초기화한다.
       2) 형식
-          open(method, url)        : method → get, post 등
+          ★open(method, url)        : method → get, post 등
                                      url    → 요청 주소
           open(method, url, async) : async  → true 이면 비동기 요청, false 이면 동기 요청
           open(method, url, async, user)
@@ -135,7 +135,7 @@
       2) onload 속성으로 이벤트를 수신(Event Listen)할 수 있다.
 
     3. readystatechange
-      1) readyState 속성이 바뀔 때마다 발생한다.
+      1) readyState 속성(요청의 상태)이 바뀔 때마다 발생한다.
       2) onreadystatechange 속성으로 이벤트를 수신(Event Listen)할 수 있다.
 -->
 
@@ -145,6 +145,100 @@
     2. REST 방식으로 동작한다.
     3. 아직 BackEnd Server 가 없기 때문에 FrontEnd 수업에서 잠시만 사용한다.
 -->
+
+<h4>비동기 요청과 JSON 응답</h4>
+<div>
+  <button type="button" id="json-btn">json응답</button>
+  <div id="authors"></div>
+</div>
+<script>
+
+  document.getElementById('json-btn').addEventListener('click', function(event) {
+    // 1. XMLHttpRequest 객체 생성
+    const xhr = new XMLHttpRequest();
+
+    // 2. 요청 초기화
+    const method = 'GET';
+    const url = 'https://thetestrequest.com/authors/';
+    xhr.open(method, url);
+
+    // 3. 요청 상태(readyState) 변화 감지 이벤트
+    xhr.addEventListener('readystatechange', function(event) {
+
+      // 요청 상태 확인
+      if(xhr.readyState === XMLHttpRequest.DONE) { /* if(xhr.readyState === 4) */
+        
+        // 응답 상태 확인
+        if(xhr.status === 200) {
+          
+          // 응답 데이터가 json 인 경우 응답 속성으로 responseText 을 사용한다.
+          const responseData = JSON.parse(xhr.responseText);   /* parse : JSON문자열을 다시 자바스크립트 값이나 객체로 바꿔준다.*/
+          
+          // 응답 데이터를 태그로 만들어 화면에 출력한다.
+          let str = '';
+          responseData.forEach(author => {
+            str += '<div class="author">'
+            str += ' <div>ID : ' + author.id + '</div>';  
+            str += ' <div>NAME : ' + author.name + '</div>';  
+            str += ' <div>EMAIL : ' + author.email + '</div>';  
+            str += ' <div><a href="' + author.avatar + '" target="_blank">AVATAR</a></div>';  
+            str += ' <div>CREATED_AT : ' + author.created_at + '</div>';  
+            str += ' <div>UPDATED_AT : ' + author.updated_at + '</div>';  
+            str += '</div>';  
+          })
+          document.getElementById('authors').innerHTML = str;
+        }
+      }
+    })
+
+    // 4. 요청 전송
+    xhr.send();
+
+  })
+
+
+</script>
+<hr/>
+
+<h4>비동기 요청과 XML 응답</h4>
+<div>
+  <button type="button" id="xml-btn">xml응답</button>
+  <div id="author-list"></div>
+</div>
+<script>
+  
+  document.getElementById('xml-btn').addEventListener('click', function(event) {
+    const xhr = new XMLHttpRequest();
+    const method = 'GET';
+    const url = 'https://thetestrequest.com/authors.xml/';
+    xhr.open(method, url);
+    xhr.addEventListener('readystatechange', function(event) {
+      if(xhr.readyState === XMLHttpRequest.DONE) {
+        if(xhr.status === 200) {
+          // 응답 데이터가 XML인 경우 responseXML 속성을 사용한다.
+          const responseData = xhr.responseXML;
+          const authors = responseData.getElementsByTagName('object');
+          let str = ''; /* 초기화 */
+          for(const author of authors) {
+            console.log(author.getElementsByTagName('id')[0].textContent);
+            str += '<div class="author">'
+            str += ' <div>ID : ' + author.getElementsByTagName('id')[0].textContent + '</div>';  
+            str += ' <div>NAME : ' + author.getElementsByTagName('name')[0].textContent + '</div>';  
+            str += ' <div>EMAIL : ' + author.getElementsByTagName('email')[0].textContent + '</div>';  
+            str += ' <div><a href="' + author.getElementsByTagName('avatar')[0].textContent + '" target="_blank">AVATAR</a></div>';  
+            str += ' <div>CREATED_AT : ' + author.getElementsByTagName('created-at')[0].textContent + '</div>';  
+            str += ' <div>UPDATED_AT : ' + author.getElementsByTagName('updated-at')[0].textContent + '</div>';  
+            str += '</div>';  
+          }
+          document.getElementById('author-list').innerHTML = str;
+        }
+      }
+    })
+    xhr.send();
+  })
+
+</script>
+
 
 <!--
     공공데이터 포털 서비스 활용하기(data.go.kr)
@@ -191,7 +285,28 @@
   <div id="contents"></div>
 </div>
 <script>
-
+  document.getElementById('public-data-btn').addEventListener('click', function(event) {
+    const xhr = new XMLHttpRequest();
+    const method = 'GET';
+    let url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; //요청주소
+    url += '?serviceKey=I2lPplPSMgf6LJiWhMjGGdUuTpEiKSmYLdnbejnfIq4RVR8qsty0L4jIbhvo9zJVB6DaELLvluakRpkBT6ZQuQ%3D%3D'; //인코딩 된 서비스 키
+    url += '&pageNo=1';
+    url += '&numOfRows=1000';
+    url += '&base_date=20241031';
+    url += '&base_time=0500';
+    url += '&nx=61';
+    url += '&ny=125';
+    url += '&dataType=JSON';
+    xhr.open(method, url);
+    xhr.addEventListener('load', function(event) {
+      const responseData = JSON.parse(xhr.responseText);
+      console.log(responseData);
+    })
+    xhr.addEventListener('error', function(event) {
+      console.log(xhr.status, xhr.statusText);
+    })
+    xhr.send();
+  })
 </script>
 <hr>
 

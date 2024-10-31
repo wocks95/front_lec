@@ -267,7 +267,7 @@ document.getElementById('id-btn').addEventListener('click', verifyId);
     const passCount = /[A-Z]/.test(pwd.value) /* 대문자가 포함되면 true */
                     + /[a-z]/.test(pwd.value) /* 소문자가 포함되면 true */
                     + /[0-9]/.test(pwd.value) /* 숫자가 포함되면 true */
-                    + /[^A-Za-z0-9]/.test(pwd.value) /* 특수문자가 포함되면 true */
+                    + /[^A-Za-z0-9]/.test(pwd.value) 
                 /*  + /[^A-Za-z0-9]/.test(pw.value) 대문자/소문자/숫자를 제외한 문자가 포함되면 true */
     if(passCount >=3 && pwd.value.length >=5 && pwd.value.length <= 20) {
       spanPwd.textContent = '사용 가능한 비밀번호입니다.';
@@ -300,6 +300,45 @@ document.getElementById('id-btn').addEventListener('click', verifyId);
   
 </script>
 <hr>
+
+<!-- 2. 회원 가입 -->
+<h4>회원 가입 화면</h4>
+<form id="signup-form"  method="post" action="/user/signup.do">
+  <div><input type="text" placeholder="example@naver.com" id="user-email"></div>
+  <div><input type="password" placeholder="비밀번호" id="user-pwd"></div>
+  <div><button type="submit">Sign Up</button></div>
+</form>
+<script>
+
+  // 아래 정규식을 통과하지 못하면 회원 가입을 못하도록 submit 을 방지하시오.
+  // 아이디   : 이메일을 아이디로 활용
+  // 비밀번호 : 4자 이상, 영문/숫자/특수문자 사용 가능
+  const signupForm = document.getElementById('signup-form');
+  const userEmail = document.getElementById('user-email');
+  const userPwd = document.getElementById('user-pwd');
+
+  signupForm.addEventListener('submit', function(event) {
+
+    const regEmail = /^[A-Za-z0-9-_]+@[A-Za-z0-9]+([.][A-Za-z]{2,6}){1,2}$/;
+    const regPwd = /^[A-Za-z0-9!@#$%^&*()]{4,}$/;
+
+    if(regEmail.test(userEmail.value) === false) {
+      alert('입력된 이메일을 확인하세요.');
+      event.preventDefault(); //subnit 방지
+      return; //function 함수 중지
+    } else if (regPwd.test(userPwd.value === false)) {
+      alert('입력된 비밀번호를 확인하세요.');
+      event.preventDefault();
+      return;
+    }
+
+  })
+</script>
+<hr>
+
+
+
+
 
 </body>
 </html>
