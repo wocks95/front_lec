@@ -11,7 +11,8 @@
     DOM
     1. Document Object Model, 문서 객체 모델
     2. HTML, XML 문서의 프로그래밍 인터페이스이다.
-    3. 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공하여 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다.
+    3. 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공하여 
+       문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다.
 -->
 
 <!--
@@ -139,7 +140,7 @@
   const box2 = document.querySelector('#box2'); //선택자가 하나일경우
   console.log(box2);
   const boxes = document.querySelector('.primary-box'); 
-    // 동일한 선택자가 여럿 있는 경우 첫 번째 요소만 반환된다.
+    // 동일한 선택자가 여럿 있는 경우 첫 번째 요소(box1)만 반환된다.
   console.log(boxes);
 
   /* HTMLCollection 객체 반환 */
@@ -198,14 +199,14 @@
 </script>
 <hr/>
 <!--
-    HTML Attribute
+    ★HTML Attribute (= HTML 속성)
     1. HTML 태그에 명시된 속성을 의미한다.
     2. 예시
       <input type="text" name="mobile" id="mobile" class="inp">
-        → Attribute는 총 4개 : type, name, id, class 
+        → Attribute(속성)는 총 4개 : type, name, id, class 
     3. 메소드
       1) 가져오기 : getAttribute(attribute)
-      2) 수정하기 : setAttribute(attribute, value)
+      2) 수정하기 : setAttribute(attribute, value(=값))
       3) 삭제하기 : removeAttribute(attribute)
 -->
 <h4>Attribute 속성</h4>
@@ -286,7 +287,7 @@
 </div>
 <script>
   const man = document.getElementById('man');
-  man.removeAttribute('checked');
+  man.removeAttribute('checked'); //속성을 삭제한다.
   const woman = document.getElementById('woman');
   //woman.setAttribute('checked', 'checked');
   woman.checked = true;

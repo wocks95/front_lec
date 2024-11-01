@@ -19,7 +19,7 @@
   
 <!--
     이벤트 핸들러 (Event Handler)
-    1. 이벤트에 반응하기 위해서는 이벤트가 발생했을 때 동작할 함수(Function)가 필요하다.
+    1. 이벤트에 반응하기 위해서는 이벤트가 발생했을 때 동작할 함수(Function)가 필요하다.★
     2. 이벤트가 발생했을 때 동작하는 함수를 이벤트 핸들러(Event Handler) 
        또는 이벤트 리스너(Event Listener) 라고 한다.
       1) 이벤트 핸들러 : 이벤트가 발생하면 실행되는 코드
@@ -343,8 +343,8 @@
     const td = event.target; // 클릭한 <td>
     if(selectedTd !== undefined) //if(selectedTd) 코드와 같음(if는 true일때 작동함), 첫 클릭이 아니라면 
       selectedTd.classList.remove('selected-td');   // 기존의 클릭한 <td>를 지워줌   이전에 선택한 <td>해제
-    selectedTd = td;         // 선택한 <td>로 하겠다.
-    selectedTd.classList.add('selected-td');
+      selectedTd = td;         // 선택한 <td>로 하겠다.
+      selectedTd.classList.add('selected-td');
   })
 </script>
 <!--
