@@ -11,7 +11,7 @@
     Fetch API
 
     1. HTTP 파이프라인을 구성하는 요청과 응답 등의 요소를 JavaScript 에서 접근하고 조작할 수 있는 인터페이스를 제공한다.
-    2. Fetch API 가 제공하는 fetch() 전역 함수를 이용해 네트워크의 리소스를 쉽게 비동기적으로 취득할 수 있다.
+    2. Fetch API 가 제공하는 ☆fetch() 전역 함수☆를 이용해 네트워크의 리소스를 쉽게 비동기적으로 취득할 수 있다.
     3. Fetch API 는 XMLHttpRequest 와 달리 프로미스 기반으로 개선되었다.
 -->
 
@@ -60,6 +60,65 @@
         Request.json()            | 요청 본문을 JSON으로 파싱한 결과로 이행하는 프로미스를 반환한다. (JSON)
         Request.text()            | 요청 본문의 Text 표현으로 이행하는 프로미스를 반환한다. (Text, XML)
 -->
+<h4>blob 리소스 요청과 응답</h4>
+<div>
+  <button type="button" id="blob-btn">blob</button>
+  <br><br>
+  <img id="blob-image" width="192px">
+</div>
+<script>
+   document.getElementById('blob-btn').addEventListener('click', function(event) {
+    fetch('../assets/images/flower1.jpg', {method: 'GET'})
+    .then(response => {
+      if(!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.blob(); // 이미지의 이진 데이터 
+    })
+    .then(binaryImage => {
+      document.getElementById('blob-image').src = URL.createObjectURL(binaryImage);
+    })
+    .catch(status => console.log(status));
+  }) 
+  
+  /* document.getElementById('blob-btn').addEventListener('click', function(event) {
+    fetch(new Request('../assets/images/flower1.jpg', {method: 'GET'}))
+    .then(response => response.blob())
+    .then(binaryImage => document.getElementById('blob-image').src = URL.createObjectURL(binaryImage));
+  }) */
+</script>
+<hr/>
+
+<h4>json 리소스 요청과 응답</h4>
+<div>
+  <button type="button" id="json-btn">json</button>
+</div>
+<script>
+  document.getElementById('json-btn').addEventListener('click', function(event) {
+    fetch('https://thetestrequest.com/authors/1', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseData => console.log(responseData));
+  })
+</script>
+<hr/>
+
+<h4>xml 리소스 요청과 응답</h4>
+<div>
+  <button type="button" id="xml-btn">xml</button>
+</div>
+<script>
+  document.getElementById('xml-btn').addEventListener('click', function(event) {
+    fetch('https://thetestrequest.com/authors/1.xml', {method: 'GET'})
+      .then(response => response.text())
+      .then(responseData => {
+        // 텍스트 형식의 XML 데이터를 XML 문서로 변환하는 코드
+        const xmlDocument = new DOMParser().parseFromString(responseData, 'application/xml');
+        console.log(xmlDocument);
+        console.log(xmlDocument.getElementsByTagName('hansh')[0]);
+      })
+  })
+</script>
+<hr/>
 
 <!--
     Response
@@ -118,8 +177,8 @@
 <h4>로그인</h4>
 <form id="login-form">
   <div><input type="text" name="id" placeholder="Id"></div>
-  <div></div><input type="password" name="password" placeholder="Password"></div>
-  <div></div><button type="button" id="login-btn">Log In</button></div>
+  <div><input type="password" name="password" placeholder="Password"></div>
+  <div><button type="button" id="login-btn">Log In</button></div>
 </form>
 <script>
   /*
@@ -128,7 +187,24 @@
     2. 요청 method    : post
     3. 요청 parameter : login-form 내부의 입력 요소
   */
-
+  document.getElementById('login-btn').addEventListener('click', function(event) {
+    const loginForm = new FormData(document.getElementById('login-form')); //FormData의 객체가 'login-form' 이다.
+    const entries = loginForm.entries(); //필요한 정보를 알려줌 :  entries , next : 하나 꺼내줌
+    fetch('/user/login.do', {
+      method: 'POST',
+      body: loginForm, //서브밋 요청(페이지 바뀌고 요청)과 비동기 요청(페이지 안바뀌고 요청하고 응답받는 것)을 구분해서 알아야함.
+    })
+    /*
+    while((element= entries.next()).done === false) { // true: 다 꺼냈다. false : 더 꺼낼 것이 있다.(마지막요소가 아니라면)
+      console.log(element.value); // ['id', '입력한 아이디']
+    }
+    
+   for(const [name, value] of entries) {
+    console.log(name, value); // id 입력한 아이디
+   }
+  */
+  })
+  
 </script>
 <hr>
 
